@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بوابة التحقق من التأشيرة الإلكترونية</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f0f4f8; margin: 0; padding: 20px; display: flex; justify-content: center; }
+        .visa-card { background: #fff; width: 100%; max-width: 480px; border-radius: 12px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #dcdfe6; overflow: hidden; }
+        .header { background: #0b1f3a; color: #fff; padding: 20px; text-align: center; border-bottom: 4px solid #c59b27; }
+        .header h2 { margin: 0; font-size: 18px; }
+        .header p { margin: 4px 0 0; font-size: 12px; opacity: 0.8; }
+        .status-box { text-align: center; padding: 12px; background: #e8f8f5; border-bottom: 1px solid #d1f2eb; }
+        .badge { background: #27ae60; color: #fff; padding: 5px 15px; border-radius: 20px; font-weight: bold; font-size: 13px; }
+        .details { padding: 20px; }
+        .row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed #eaedf1; }
+        .row:last-child { border-bottom: none; }
+        .label { color: #707a8a; font-size: 13px; }
+        .value { color: #1e293b; font-weight: bold; font-size: 14px; }
+        .qr-section { text-align: center; padding: 15px; background: #f8fafc; border-top: 1px solid #eaedf1; }
+        #qrcode { display: inline-block; padding: 8px; background: #fff; border: 1px solid #e2e8f0; border-radius: 8px; }
+        .footer { padding: 15px; background: #fff; text-align: center; border-top: 1px solid #eaedf1; }
+        .btn-pdf { background: #0b1f3a; color: #fff; border: none; padding: 12px 20px; border-radius: 8px; font-weight: bold; cursor: pointer; width: 100%; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="visa-card">
+    <div class="header">
+        <h2>نظام الاستعلام عن التأشيرات الإلكترونية</h2>
+        <p>E-Visa Verification Gateway</p>
+    </div>
+
+    <div class="status-box">
+        <span class="badge">✓ التأشيرة نشطة / Active</span>
+    </div>
+    <div class="details">
+        <div class="row"><span class="label">الدولة:</span><span class="value" id="out_country"></span></div>
+        <div class="row"><span class="label">رقم التأشيرة:</span><span class="value" id="out_visaNum"></span></div>
+        <div class="row"><span class="label">الاسم الكامل:</span><span class="value" id="out_name"></span></div>
+        <div class="row"><span class="label">رقم جواز السفر:</span><span class="value" id="out_passport"></span></div>
+        <div class="row"><span class="label">الجنسية:</span><span class="value" id="out_nationality"></span></div>
+        <div class="row"><span class="label">تاريخ الانتهاء:</span><span class="value" id="out_expiry"></span></div>
+    </div>
+    <div class="qr-section">
+        <p style="font-size: 11px; color: #707a8a; margin-bottom: 8px;">رمز التحقق الفريد (QR Code)</p>
+        <div id="qrcode"></div>
+    </div>
+    <div class="footer">
+        <button class="btn-pdf" onclick="window.print()">طباعة / تحميل التأشيرة (PDF)</button>
+    </div>
+</div>
+
+<script>
+    // قراءة البيانات الممررة عبر رابط الصفحة تلقائياً
+    var p = new URLSearchParams(window.location.search);
+    
+    var country = p.get('country') || "سلطنة عمان";
+    var visaNum = p.get('visa') || "58592634";
+    var name = p.get('name') || "HAMADA ALAMDOOCH";
+    var passport = p.get('passport') || "N00719789";
+    var nationality = p.get('nat') || "SYRIAN ARAB REPUBLIC";
+    var expiry = p.get('expiry') || "2026/08/25";
+
+    document.getElementById('out_country').innerText = country;
+    document.getElementById('out_visaNum').innerText = visaNum;
+    document.getElementById('out_name').innerText = name;
+    document.getElementById('out_passport').innerText = passport;
+    document.getElementById('out_nationality').innerText = nationality;
+    document.getElementById('out_expiry').innerText = expiry;
+
+    // توليد الـ QR تلقائياً
+    try {
+        new QRCode(document.getElementById("qrcode"), {
+            text: window.location.href,
+            width: 110,
+            height: 110
+        });
+    } catch(e) {}
+</script>
+
+</body>
+</html>
