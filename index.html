@@ -71,6 +71,19 @@
         .search-container button:hover {
             background-color: #c9302c;
         }
+        /* تصميم رسالة الخطأ الرسمية ثنائية اللغة */
+        .error-box {
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 40px auto;
+            max-width: 600px;
+            text-align: center;
+            font-weight: bold;
+            line-height: 1.6;
+        }
     </style>
 </head>
 
@@ -111,7 +124,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث (نفس السورس كود الأصلي بدقة) -->
+        <!-- الواجهة الثانية: نتائج البحث (تظهر عند صحة البيانات) -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -130,25 +143,25 @@
                                     <br clear="all">
                                     <div class="qr-content">
                                         <p class="mb-0">Visa Number</p>
-                                        <p class="fw-bold mb-2" id="res-visa">58949899</p>
+                                        <p class="fw-bold mb-2" id="res-visa"></p>
 
                                         <p class="mb-0">Given Name</p>
-                                        <p class="fw-bold mb-2" id="res-fname">AHMAD SAMEER</p>
+                                        <p class="fw-bold mb-2" id="res-fname"></p>
                                            
                                         <p class="mb-0">Family Name</p>
-                                        <p class="fw-bold mb-2" id="res-lname">JARWA</p>
+                                        <p class="fw-bold mb-2" id="res-lname"></p>
                                            
                                         <p class="mb-0">Gender</p>
-                                        <p class="fw-bold mb-2" id="res-gender">Male</p>
+                                        <p class="fw-bold mb-2" id="res-gender"></p>
 
                                         <p class="mb-0">Nationality</p>
                                         <p class="fw-bold mb-2" id="res-nat">SYRIAN ARAB REPUBLIC</p>
 
                                         <p class="mb-0">Travel Document Number</p>
-                                        <p class="fw-bold mb-2" id="res-doc">N01618579</p>
+                                        <p class="fw-bold mb-2" id="res-doc"></p>
 
                                         <p class="mb-0">Travel Document Expiry Date</p>
-                                        <p class="fw-bold mb-2" id="res-exp">31-07-2030</p>
+                                        <p class="fw-bold mb-2" id="res-exp"></p>
                                     </div>
                                   </div>
                                  </section>
@@ -156,6 +169,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- واجهة الخطأ الرسمية ثنائية اللغة (تظهر عند إدخال رقم غير موجود أو خاطئ) -->
+        <div id="errorView" style="display: none;">
+            <div class="error-box">
+                <p>⚠️ Error: Visa application not found or invalid number.</p>
+                <p style="margin-top: 5px; font-weight: normal;">عذراً: البيانات المدخلة غير صحيحة أو التأشيرة غير موجودة.</p>
             </div>
         </div>
 	</div>
@@ -175,7 +196,6 @@
 </div>
 
 <script>
-    // قاعدة بيانات تحوي بيانات سورية متنوعة (ذكور وإناث)
     const syrianDatabase = [
         { visa: "58949899", fname: "AHMAD SAMEER", lname: "JARWA", gender: "Male", doc: "N01618579", exp: "31-07-2030" },
         { visa: "61245810", fname: "MOHAMMAD ALI", lname: "AL-KATEB", gender: "Male", doc: "N02485912", exp: "15-05-2029" },
@@ -209,28 +229,25 @@
         const val = document.getElementById('inputField').value.trim();
         if (!val) return;
 
-        // البحث في القائمة أو اختيار عشوائي ذكي إذا لم يتم إدخال قيمة مطابقة تماماً لتجربة سريعة
         let person = syrianDatabase.find(item => item.visa === val || item.doc === val);
         
-        if (!person) {
-            // إذا أدخل رقم غير موجود بالجدول، نأخذ عشوائياً واحداً لضمان ظهور النتيجة دائماً وبشكل صحيح
-            person = syrianDatabase[Math.floor(Math.random() * syrianDatabase.length)];
-            // نحدث رقم الجواز أو الفيزا المدخل للرقم الذي كتبه المستخدم
-            person.visa = val.length > 6 ? person.visa : val;
-        }
-
-        // تعبئة البيانات في واجهة النتيجة الأصلية
-        document.getElementById('res-visa').innerText = person.visa;
-        document.getElementById('res-fname').innerText = person.fname;
-        document.getElementById('res-lname').innerText = person.lname;
-        document.getElementById('res-gender').innerText = person.gender;
-        document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
-        document.getElementById('res-doc').innerText = person.doc;
-        document.getElementById('res-exp').innerText = person.exp;
-
-        // إخفاء واجهة الاستعلام وإظهار واجهة النتيجة الرسمية
         document.getElementById('queryView').style.display = 'none';
-        document.getElementById('resultView').style.display = 'block';
+
+        if (person) {
+            document.getElementById('res-visa').innerText = person.visa;
+            document.getElementById('res-fname').innerText = person.fname;
+            document.getElementById('res-lname').innerText = person.lname;
+            document.getElementById('res-gender').innerText = person.gender;
+            document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
+            document.getElementById('res-doc').innerText = person.doc;
+            document.getElementById('res-exp').innerText = person.exp;
+
+            document.getElementById('resultView').style.display = 'block';
+            document.getElementById('errorView').style.display = 'none';
+        } else {
+            document.getElementById('resultView').style.display = 'none';
+            document.getElementById('errorView').style.display = 'block';
+        }
     }
 </script>
 </body>
