@@ -1,265 +1,180 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html class="ltr" dir="ltr" lang="en-US">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oman e Visa - Royal Oman Police</title>
+    <title>Track Your Application - Evisa (Controlled)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <style>
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: Arial, sans-serif;
             background-color: #f4f6f9;
             margin: 0;
             padding: 0;
-            direction: ltr;
-            min-height: 100vh;
-            position: relative;
-            padding-bottom: 140px;
-            box-sizing: border-box;
+            color: #333;
         }
-        
-        /* ترويسة الشعار العلوية المستقرة */
-        .top-header-container {
-            width: 100%;
-            background-color: #ffffff;
-            border-bottom: 1px solid #dcdcdc;
-            padding: 5px 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        .top-header-container img {
-            width: 100%;
-            max-width: 850px; /* الحجم المثالي للشعار المرفوع */
-            height: auto;
-            display: block;
-        }
-
-        .main-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 30px 15px;
-        }
-        .visa-card {
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
             background: #ffffff;
-            padding: 35px 25px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-            width: 100%;
-            max-width: 440px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .header-title {
             text-align: center;
-            border: 1px solid #dcdcdc;
-        }
-        h2 {
-            color: #003366;
+            border-bottom: 2px solid #0066cc;
+            padding-bottom: 15px;
             margin-bottom: 25px;
-            font-size: 22px;
         }
-        input {
-            width: 100%;
-            padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #b0b0b0;
-            border-radius: 4px;
-            box-sizing: border-box;
+        .header-title h2 {
+            color: #0066cc;
+            margin: 0;
+        }
+        .section-qr {
+            text-align: center;
+        }
+        .section-qr img {
+            width: 60px;
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        .sub_ttl {
+            font-size: 20px;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .qr-content {
             text-align: left;
-            font-size: 15px;
+            background: #f9f9f9;
+            padding: 20px;
+            border-radius: 6px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
         }
-        .action-btn {
-            background-color: #3b5998;
-            color: white;
-            border: none;
-            padding: 12px;
-            width: 100%;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-top: 15px;
+        .qr-content p {
+            margin: 8px 0;
         }
-        .action-btn:hover { background-color: #2d4373; }
-        .error-text { color: #d9534f; margin-top: 12px; font-weight: bold; font-size: 13px; }
-
-        .success-icon-circle {
-            width: 75px;
-            height: 75px;
-            background-color: #2ecc71;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 45px;
-            margin: 0 auto 15px auto;
-        }
-        .active-status-title {
-            font-size: 24px;
-            font-weight: bold;
-            color: #111;
-            margin-bottom: 20px;
-        }
-        .separator-line {
-            border: none;
-            border-top: 1px solid #e1e8ed;
-            margin: 18px 0;
-        }
-        .data-label {
+        .mb-0 {
             font-size: 13px;
             color: #666;
-            margin-bottom: 3px;
         }
-        .data-value {
+        .fw-bold {
             font-size: 16px;
-            font-weight: bold;
             color: #111;
+            font-weight: bold;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
         }
-        
-        /* تذييل الصفحة المضمون */
-        .footer-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
+        /* لوحة التحكم السريعة للمتصفح */
+        .control-panel {
+            margin-top: 30px;
+            padding: 15px;
+            background: #eef2f7;
+            border-radius: 5px;
+            border: 1px dashed #0066cc;
+        }
+        .control-panel h4 {
+            margin-top: 0;
+            color: #0066cc;
+        }
+        .control-panel input {
             width: 100%;
-            background-color: #4a63cb; 
-        }
-        
-        /* استدعاء ملف صورة الزخرفة المحلية المكررة */
-        .footer-pattern-bar {
-            width: 100%;
-            height: 45px;
-            background-image: url('pattern.png'); /* استدعاء الصورة من جهازك فوراً */
-            background-repeat: repeat-x; /* تكرار أفقي مستمر */
-            background-size: auto 100%;
-            background-position: left center;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .footer-bottom-bar {
-            background-color: #4a63cb;
-            padding: 15px 20px;
-            display: flex;
-            align-items: center;
-        }
-        .footer-menu-btn {
-            background-color: transparent;
-            color: white;
-            border: 1px solid #ffffff;
-            padding: 4px 10px;
+            padding: 8px;
+            margin: 5px 0 12px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
             border-radius: 4px;
-            font-size: 16px;
+        }
+        .control-panel button {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 10px 15px;
             cursor: pointer;
-            line-height: 1;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .control-panel button:hover {
+            background: #004d99;
         }
     </style>
 </head>
 <body>
 
-<!-- الترويسة تستدعي الآن ملف صورة الشعار الحقيقي مباشرة -->
-<div class="top-header-container">
-    <img src="header.jpg" alt="Royal Oman Police Header">
-</div>
-
-<div class="main-container">
-    <!-- شاشة البحث -->
-    <div class="visa-card" id="searchScreen">
-        <h2>Visa Status Inquiry</h2>
-        <input type="text" id="documentInput" placeholder="Enter Travel Document Number">
-        <button class="action-btn" onclick="verifyVisa()">Search</button>
-        <div id="errorMsg" class="error-text"></div>
+<div class="container">
+    <div class="header-title">
+        <h2>Sultanate of Oman - Royal Oman Police</h2>
+        <p>Evisa Status Tracking</p>
     </div>
 
-    <!-- شاشة النتيجة -->
-    <div class="visa-card" id="resultScreen" style="display: none;">
-        <div class="success-icon-circle">✓</div>
-        <div class="active-status-title">Visa is Active</div>
+    <section class="section-qr">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!-- أيقونة الحالة -->
+                <img id="status-icon" src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" alt="Status">
+                <br>
+                <b class="sub_ttl" id="display-status">Visa is Active</b>
+            </div>
+
+            <div class="qr-content" id="visa-details">
+                <p class="mb-0">Visa Number</p>
+                <p class="fw-bold mb-2" id="val-visaNumber">58949899</p>
+
+                <p class="mb-0">Given Name</p>
+                <p class="fw-bold mb-2" id="val-givenName">AHMAD SAMEER</p>
+                
+                <p class="mb-0">Family Name</p>
+                <p class="fw-bold mb-2" id="val-familyName">JARWA</p>
+                   
+                <p class="mb-0">Gender</p>
+                <p class="fw-bold mb-2" id="val-gender">Male</p>
+
+                <p class="mb-0">Nationality</p>
+                <p class="fw-bold mb-2" id="val-nationality">SYRIAN ARAB REPUBLIC</p>
+
+                <p class="mb-0">Travel Document Number</p>
+                <p class="fw-bold mb-2" id="val-docNumber">N01618579</p>
+
+                <p class="mb-0">Travel Document Expiry Date</p>
+                <p class="fw-bold mb-2" id="val-docExpiry">31-07-2030</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- لوحة تحكم فورية تجريبية للتحكم بالبيانات من داخل الصفحة -->
+    <div class="control-panel">
+        <h4>لوحة التحكم السريعة (تعديل البيانات فوريًا)</h4>
+        <label>رقم التأشيرة:</label>
+        <input type="text" id="input-visaNumber" value="58949899">
         
-        <hr class="separator-line">
+        <label>الاسم الأول:</label>
+        <input type="text" id="input-givenName" value="AHMAD SAMEER">
+        
+        <label>اسم العائلة:</label>
+        <input type="text" id="input-familyName" value="JARWA">
+        
+        <label>الجنسية:</label>
+        <input type="text" id="input-nationality" value="SYRIAN ARAB REPUBLIC">
+        
+        <label>رقم جواز السفر:</label>
+        <input type="text" id="input-docNumber" value="N01618579">
+        
+        <label>تاريخ الانتهاء:</label>
+        <input type="text" id="input-docExpiry" value="31-07-2030">
 
-        <div class="data-label">Visa Number</div>
-        <div class="data-value" id="val_visaNo"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Given Name</div>
-        <div class="data-value" id="val_givenName"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Family Name</div>
-        <div class="data-value" id="val_familyName"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Gender</div>
-        <div class="data-value" id="val_gender"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Nationality</div>
-        <div class="data-value" id="val_nat"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Travel Document Number</div>
-        <div class="data-value" id="val_documentNo"></div>
-
-        <div class="data-label" style="margin-top: 15px;">Travel Document Expiry Date</div>
-        <div class="data-value" id="val_expiry"></div>
-    </div>
-</div>
-
-<!-- تذييل الصفحة المستدعي لصورة الزخرفة المحلية المكررة أوتوماتيكياً -->
-<div class="footer-container">
-    <div class="footer-pattern-bar"></div>
-    <div class="footer-bottom-bar">
-        <button class="footer-menu-btn" onclick="goBack()">☰</button>
+        <button onclick="updateData()">تحديث البيانات وتطبيقها</button>
     </div>
 </div>
 
 <script>
-    const visaDatabase = [
-        {
-            passport: "N0152762726",
-            visaNo: "58949899",
-            givenName: "AHMAD SAMEER",
-            familyName: "JARWA",
-            gender: "Male",
-            nat: "SYRIAN ARAB REPUBLIC",
-            expiry: "31-07-2030"
-        },
-        {
-            passport: "N99999O9O",
-            visaNo: "98827610",
-            givenName: "MAHER",
-            familyName: "KHALIL",
-            gender: "Male",
-            nat: "SYRIAN ARAB REPUBLIC",
-            expiry: "25-12-2026"
-        }
-    ];
-
-    function verifyVisa() {
-        const inputVal = document.getElementById("documentInput").value.trim().toUpperCase();
-        const errorDiv = document.getElementById("errorMsg");
-        
-        if(!inputVal) {
-            errorDiv.innerText = "Please enter the travel document number!";
-            return;
-        }
-
-        const foundUser = visaDatabase.find(item => item.passport.toUpperCase() === inputVal);
-
-        if(foundUser) {
-            document.getElementById("searchScreen").style.display = "none";
-            document.getElementById("resultScreen").style.display = "block";
-            
-            document.getElementById("val_visaNo").innerText = foundUser.visaNo;
-            document.getElementById("val_givenName").innerText = foundUser.givenName;
-            document.getElementById("val_familyName").innerText = foundUser.familyName;
-            document.getElementById("val_gender").innerText = foundUser.gender;
-            document.getElementById("val_nat").innerText = foundUser.nat;
-            document.getElementById("val_documentNo").innerText = foundUser.passport;
-            document.getElementById("val_expiry").innerText = foundUser.expiry;
-        } else {
-            errorDiv.innerText = "Sorry, visa data not found for this document number.";
-        }
-    }
-
-    function goBack() {
-        document.getElementById("documentInput").value = "";
-        document.getElementById("errorMsg").innerText = "";
-        document.getElementById("resultScreen").style.display = "none";
-        document.getElementById("searchScreen").style.display = "block";
+    function updateData() {
+        document.getElementById('val-visaNumber').innerText = document.getElementById('input-visaNumber').value;
+        document.getElementById('val-givenName').innerText = document.getElementById('input-givenName').value;
+        document.getElementById('val-familyName').innerText = document.getElementById('input-familyName').value;
+        document.getElementById('val-nationality').innerText = document.getElementById('input-nationality').value;
+        document.getElementById('val-docNumber').innerText = document.getElementById('input-docNumber').value;
+        document.getElementById('val-docExpiry').innerText = document.getElementById('input-docExpiry').value;
+        alert('تم تحديث بيانات التأشيرة بنجاح!');
     }
 </script>
 
