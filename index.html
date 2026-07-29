@@ -29,26 +29,45 @@
         .ui-button { visibility: hidden; }
         .inactiveLinkMenu { pointer-events: none; cursor: default; }
 
-        /* تنسيقات صفحة الاستعلام الأولى */
+        /* تنسيقات متجاوبة لجميع الأجهزة */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        #wrapper {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+            box-sizing: border-box;
+        }
         .search-container {
-            max-width: 600px;
+            width: 100%;
+            max-width: 550px;
             margin: 40px auto;
             background: #fff;
-            padding: 30px;
+            padding: 25px;
             border: 1px solid #ddd;
             box-shadow: 0 0 10px rgba(0,0,0,0.05);
             text-align: center;
+            box-sizing: border-box;
         }
         .search-container h2 {
             color: #0066cc;
             margin-bottom: 20px;
-            font-size: 22px;
+            font-size: 20px;
         }
         .search-container label {
             display: block;
             margin-bottom: 8px;
             font-weight: bold;
             text-align: left;
+            font-size: 14px;
         }
         .search-container input[type="text"] {
             width: 100%;
@@ -57,9 +76,10 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
+            font-size: 16px;
         }
         .search-container button {
-            background-color: #d9534f; /* زر أحمر */
+            background-color: #d9534f;
             color: white;
             padding: 12px 30px;
             border: none;
@@ -67,9 +87,50 @@
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
+            width: 100%;
+            max-width: 200px;
         }
         .search-container button:hover {
             background-color: #c9302c;
+        }
+
+        /* تحسين استجابة حاوية النتيجة للشاشات الصغيرة */
+        #resultView {
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .section-qr {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            box-sizing: border-box;
+            background: #fff;
+            border: 1px solid #eee;
+        }
+        .qr-content {
+            text-align: left;
+            padding: 0 10px;
+        }
+
+        /* تعديلات ميديا كويري للموبايلات والتابلت */
+        @media screen and (max-width: 768px) {
+            .top_header {
+                height: auto !important;
+                padding: 10px 0;
+            }
+            .menu_ul_set {
+                display: none; /* إخفاء القائمة العلوية الضيقة في الموبايل لتجنب التداخل */
+            }
+            .search-container {
+                margin: 20px 10px;
+                padding: 15px;
+                width: auto;
+            }
+            .section-qr {
+                margin: 10px;
+                width: auto;
+            }
         }
     </style>
 </head>
@@ -111,7 +172,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث (نفس السورس كود الأصلي بدقة) -->
+        <!-- الواجهة الثانية: نتائج البحث (نفس السورس كود الأصلي بدقة مع دعم التجاوب) -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -121,7 +182,7 @@
                                 <section class="section-qr">
                                   <div class="row">
                                     <div class="col-lg-12 text-center">
-                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:20px;">
+                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:20px; max-width: 100%; height: auto;">
                                         <br>
                                        <b class="sub_ttl">Visa is Active</b>
                                     </div>
@@ -175,7 +236,6 @@
 </div>
 
 <script>
-    // قاعدة بيانات تحوي بيانات سورية متنوعة (ذكور وإناث)
     const syrianDatabase = [
         { visa: "58949899", fname: "AHMAD SAMEER", lname: "JARWA", gender: "Male", doc: "N01618579", exp: "31-07-2030" },
         { visa: "61245810", fname: "MOHAMMAD ALI", lname: "AL-KATEB", gender: "Male", doc: "N02485912", exp: "15-05-2029" },
@@ -209,17 +269,13 @@
         const val = document.getElementById('inputField').value.trim();
         if (!val) return;
 
-        // البحث في القائمة أو اختيار عشوائي ذكي إذا لم يتم إدخال قيمة مطابقة تماماً لتجربة سريعة
         let person = syrianDatabase.find(item => item.visa === val || item.doc === val);
         
         if (!person) {
-            // إذا أدخل رقم غير موجود بالجدول، نأخذ عشوائياً واحداً لضمان ظهور النتيجة دائماً وبشكل صحيح
             person = syrianDatabase[Math.floor(Math.random() * syrianDatabase.length)];
-            // نحدث رقم الجواز أو الفيزا المدخل للرقم الذي كتبه المستخدم
             person.visa = val.length > 6 ? person.visa : val;
         }
 
-        // تعبئة البيانات في واجهة النتيجة الأصلية
         document.getElementById('res-visa').innerText = person.visa;
         document.getElementById('res-fname').innerText = person.fname;
         document.getElementById('res-lname').innerText = person.lname;
@@ -228,7 +284,6 @@
         document.getElementById('res-doc').innerText = person.doc;
         document.getElementById('res-exp').innerText = person.exp;
 
-        // إخفاء واجهة الاستعلام وإظهار واجهة النتيجة الرسمية
         document.getElementById('queryView').style.display = 'none';
         document.getElementById('resultView').style.display = 'block';
     }
