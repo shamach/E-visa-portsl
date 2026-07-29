@@ -17,32 +17,28 @@
             box-sizing: border-box;
         }
         
-        /* ترويسة تعتمد على الخلفية البيضاء مع تحديد الحدود */
-        .top-header-img {
+        /* ترويسة الشعار العلوية المستقرة */
+        .top-header-container {
             width: 100%;
             background-color: #ffffff;
             border-bottom: 1px solid #dcdcdc;
-            padding: 10px 0;
+            padding: 5px 0;
             display: flex;
             justify-content: center;
             align-items: center;
         }
-        
-        /* الشعار مدمج برمجياً بالكامل لضمان ظهوره فوراً وبدقة عالية */
-        .header-logo-svg {
+        .top-header-container img {
             width: 100%;
-            max-width: 750px;
+            max-width: 850px; /* الحجم المثالي للشعار المرفوع */
             height: auto;
             display: block;
-            padding: 0 10px;
-            box-sizing: border-box;
         }
 
         .main-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
         }
         .visa-card {
             background: #ffffff;
@@ -118,7 +114,7 @@
             color: #111;
         }
         
-        /* تذييل الصفحة الكامل والآمن */
+        /* تذييل الصفحة المضمون */
         .footer-container {
             position: absolute;
             bottom: 0;
@@ -127,20 +123,20 @@
             background-color: #4a63cb; 
         }
         
-        /* شريط الزخرفة المدمج مشفراً لضمان التكرار الفوري */
+        /* استدعاء ملف صورة الزخرفة المحلية المكررة */
         .footer-pattern-bar {
             width: 100%;
-            height: 42px;
-            /* كود مشفر مدمج يحتوي على تفاصيل الزخرفة الثنائية الهندسية البيضاء */
-            background-image: url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MCIgaGVpZ2h0PSI0MiIgdmlld0JveD0iMCAwIDYwIDQyIj48bGluZSB4MT0iMCIgeTE9IjMiIHgyPSI2MCIgeTI9IjMiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjAiIHkxPSI2IiB4Mj0iNjAiIHkyPSI2IiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjEuNSIgb3BhY2l0eT0iMC45Ii8+PGxpbmUgeDE9IjAiIHkxPSIzNiIgeDI9IjYwIiB5Mj0iMzYiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS41IiBvcGFjaXR5PSIwLjkiLz48bGluZSB4MT0iMCIgeTE9IjM5IiB4Mj0iNjAiIHkyPSIzOSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjkiLz48cGF0aCBkPSJNMzAsMTAgQzMzLDE0IDM4LDE0IDQxLDIxIEMzOCwyNyAzMywyNyAzMCwzMiBDMjcsMjcgMjIsMjcgMTksMjEgQzIyLDE0IDI3LDE0IDMwLDEwIFoiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMS4yIiBvcGFjaXR5PSIwLjk1Ii8+PHBhdGggZD0iTTMwLDE0IEMzMiwxNyAzNSwxNyAzNywyMSBDMzUsMjUgMzIsMjUgMzAsMjkgQzI4LDI1IDI1LDI1IDIzLDIxIEMyNSwxNyAyOCwxNyAzMCwxNFoiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4yKSIgc3Ryb2tlPSJ3aGl0ZSIgc3Ryb2tlLXdpZHRoPSIwLjgiIG9wYWNpdH09IjAuOSIvPjxjaXJjbGUgY3g9IjMwIiBjeT0iMjEiIHI9IjEuNSIgZmlsbD0id2hpdGUiLz48cGF0aCBkPSJNMTIsMjEgTDE5LDIxIE00MSwyMSBMNDgsMjEiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC44Ii8+PGNpcmNsZSBjeD0iMTIiIGN5PSIyMSIgcj0iMSIgZmlsbD0id2hpdGUiLz48Y2lyY2xlIGN4PSI0OCIgY3k9IjIxIiByPSIxIiBmaWxsPSJ3aGl0ZSIvPjwvc3ZnPg==');
-            background-repeat: repeat-x;
+            height: 45px;
+            background-image: url('pattern.png'); /* استدعاء الصورة من جهازك فوراً */
+            background-repeat: repeat-x; /* تكرار أفقي مستمر */
             background-size: auto 100%;
             background-position: left center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-bottom-bar {
             background-color: #4a63cb;
-            padding: 12px 15px;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
         }
@@ -157,33 +153,10 @@
     </style>
 </head>
 <body>
-<!-- ترويسة الشعار المرسومة ذاتياً برمجياً داخل الكود لضمان تخطي الحجب بنسبة 100% -->
-<div class="top-header-img">
-    <svg class="header-logo-svg" viewBox="0 0 850 100" fill="none" xmlns="http://w3.org">
-        <!-- أيقونة مستوحاة من هيكل درع شعار الشرطة -->
-        <g transform="translate(10, 10)">
-            <path d="M40 10 L70 25 L70 55 C70 75 40 85 40 85 C40 85 10 75 10 55 L10 25 Z" fill="#4a63cb" stroke="#003366" stroke-width="2"/>
-            <path d="M40 20 L58 30 L58 52 C58 65 40 73 40 73 C40 73 22 65 22 52 L22 30 Z" fill="#ffffff"/>
-            <circle cx="40" cy="45" r="10" fill="#cc0000"/>
-            <path d="M35 45 L40 35 L45 45 L35 45 Z" fill="#ffffff"/>
-        </g>
-        
-        <!-- نصوص الهوية الرسمية باللغتين العربية والإنجليزية -->
-        <text x="100" y="42" fill="#1a1a1a" font-family="Arial, sans-serif" font-size="24" font-weight="bold" letter-spacing="0.5">شُرْطَة عُمَان السُّلْطَانِيَّة</text>
-        <text x="100" y="75" fill="#555555" font-family="Arial, sans-serif" font-size="16" font-weight="bold" letter-spacing="1">ROYAL OMAN POLICE</text>
-        
-        <!-- ترويسة قسم التأشيرات الجانبي المتناسق -->
-        <text x="440" y="42" fill="#512da8" font-family="Arial, sans-serif" font-size="20" font-weight="bold">Oman eVisa</text>
-        <text x="440" y="70" fill="#777777" font-family="Arial, sans-serif" font-size="13">التأشيرة الإلكترونية العُمانية</text>
-        
-        <!-- زر القائمة الجانبي المتطابق مع صورتك -->
-        <g transform="translate(750, 25)">
-            <rect width="45" height="42" rx="6" fill="#4a63cb"/>
-            <line x1="10" y1="14" x2="35" y2="14" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <line x1="10" y1="21" x2="35" y2="21" stroke="white" stroke-width="3" stroke-linecap="round"/>
-            <line x1="10" y1="28" x2="35" y2="28" stroke="white" stroke-width="3" stroke-linecap="round"/>
-        </g>
-    </svg>
+
+<!-- الترويسة تستدعي الآن ملف صورة الشعار الحقيقي مباشرة -->
+<div class="top-header-container">
+    <img src="header.jpg" alt="Royal Oman Police Header">
 </div>
 
 <div class="main-container">
@@ -224,7 +197,8 @@
         <div class="data-value" id="val_expiry"></div>
     </div>
 </div>
-<!-- الشريط السفلي الثابت للزخرفة -->
+
+<!-- تذييل الصفحة المستدعي لصورة الزخرفة المحلية المكررة أوتوماتيكياً -->
 <div class="footer-container">
     <div class="footer-pattern-bar"></div>
     <div class="footer-bottom-bar">
@@ -246,39 +220,48 @@
         {
             passport: "N99999O9O",
             visaNo: "98827610",
+            givenName: "MAHER",
+            familyName: "KHALIL",
+            gender: "Male",
+            nat: "SYRIAN ARAB REPUBLIC",
+            expiry: "25-12-2026"
+        }
+    ];
 
-givenName: "MAHER",
-familyName: "KHALIL",
-gender: "Male",
-nat: "SYRIAN ARAB REPUBLIC",
-expiry: "25-12-2026"
-}
-];
-function verifyVisa() {
-const inputVal = document.getElementById("documentInput").value.trim().toUpperCase();
-const errorDiv = document.getElementById("errorMsg");
-if(!inputVal) {
-errorDiv.innerText = "Please enter the travel document number!";
-return;
-}
-const foundUser = visaDatabase.find(item => item.passport.toUpperCase() === inputVal);
-if(foundUser) {
-document.getElementById("searchScreen").style.display = "none";
-document.getElementById("resultScreen").style.display = "block";
-document.getElementById("val_visaNo").innerText = foundUser.visaNo;
-document.getElementById("val_givenName").innerText = foundUser.givenName;
-document.getElementById("val_familyName").innerText = foundUser.familyName;
-document.getElementById("val_gender").innerText = foundUser.gender;
-document.getElementById("val_nat").innerText = foundUser.nat;
-document.getElementById("val_documentNo").innerText = foundUser.passport;
-document.getElementById("val_expiry").innerText = foundUser.expiry;
-} else {
-errorDiv.innerText = "Sorry, visa data not found for this document number.";
-}
-}
-function goBack() {
-document.getElementById("documentInput").value = "";
-document.getElementById("errorMsg").innerText = "";
-document.getElementById("resultScreen").style.display = "none";
-document.getElementById("searchScreen").style.display = "block";
-}
+    function verifyVisa() {
+        const inputVal = document.getElementById("documentInput").value.trim().toUpperCase();
+        const errorDiv = document.getElementById("errorMsg");
+        
+        if(!inputVal) {
+            errorDiv.innerText = "Please enter the travel document number!";
+            return;
+        }
+
+        const foundUser = visaDatabase.find(item => item.passport.toUpperCase() === inputVal);
+
+        if(foundUser) {
+            document.getElementById("searchScreen").style.display = "none";
+            document.getElementById("resultScreen").style.display = "block";
+            
+            document.getElementById("val_visaNo").innerText = foundUser.visaNo;
+            document.getElementById("val_givenName").innerText = foundUser.givenName;
+            document.getElementById("val_familyName").innerText = foundUser.familyName;
+            document.getElementById("val_gender").innerText = foundUser.gender;
+            document.getElementById("val_nat").innerText = foundUser.nat;
+            document.getElementById("val_documentNo").innerText = foundUser.passport;
+            document.getElementById("val_expiry").innerText = foundUser.expiry;
+        } else {
+            errorDiv.innerText = "Sorry, visa data not found for this document number.";
+        }
+    }
+
+    function goBack() {
+        document.getElementById("documentInput").value = "";
+        document.getElementById("errorMsg").innerText = "";
+        document.getElementById("resultScreen").style.display = "none";
+        document.getElementById("searchScreen").style.display = "block";
+    }
+</script>
+
+</body>
+</html>
