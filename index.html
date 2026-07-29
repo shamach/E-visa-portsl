@@ -7,78 +7,80 @@
     <style>
         body {
             font-family: Arial, Helvetica, sans-serif;
-            background-color: #f4f6f9;
+            background-color: #f0f2f5;
             margin: 0;
             padding: 0;
             direction: ltr;
         }
+        /* الهيدر العلوي مطابق للصورة */
         .top-header {
             background-color: #ffffff;
-            border-bottom: 1px solid #dcdcdc;
-            padding: 10px 20px;
+            border-bottom: 1px solid #ddd;
+            padding: 10px 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .top-header img {
-            height: 45px;
+            height: 40px;
         }
-        .menu-btn {
-            background-color: #003366;
+        .menu-icon {
+            font-size: 24px;
+            background: #003366;
             color: white;
-            border: none;
-            padding: 6px 12px;
+            padding: 5px 10px;
             border-radius: 4px;
-            font-size: 20px;
             cursor: pointer;
         }
-        .blue-banner {
+        .blue-bar {
             background-color: #3b5998;
-            padding: 8px 20px;
+            padding: 8px 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
         }
-        .lang-switch {
+        .lang-btn {
             background-color: #e4e6eb;
             color: #003366;
             border: none;
-            padding: 5px 15px;
+            padding: 6px 15px;
             border-radius: 4px;
             font-weight: bold;
-            font-size: 13px;
             cursor: pointer;
         }
-        .main-container {
+        .container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 15px;
+            padding: 20px;
             min-height: 70vh;
         }
-        .visa-card {
-            background: #ffffff;
-            padding: 35px 25px;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        .card {
+            background: white;
+            padding: 30px 20px;
+            border-radius: 4px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
             width: 100%;
-            max-width: 440px;
+            max-width: 450px;
             text-align: center;
             border: 1px solid #dcdcdc;
         }
         h2 {
             color: #003366;
-            margin-bottom: 25px;
-            font-size: 22px;
+            margin-bottom: 20px;
+            font-size: 20px;
         }
         input {
             width: 100%;
             padding: 12px;
-            margin: 12px 0;
-            border: 1px solid #b0b0b0;
+            margin: 10px 0;
+            border: 1px solid #ccc;
             border-radius: 4px;
             box-sizing: border-box;
             text-align: left;
             font-size: 15px;
         }
-        .action-btn {
+        .btn {
             background-color: #003366;
             color: white;
             border: none;
@@ -88,46 +90,48 @@
             font-size: 16px;
             cursor: pointer;
             font-weight: bold;
-            margin-top: 15px;
+            margin-top: 10px;
         }
-        .action-btn:hover { background-color: #002244; }
-        .error-text { color: #d9534f; margin-top: 12px; font-weight: bold; font-size: 13px; }
+        .btn:hover { background-color: #002244; }
+        .error { color: #d9534f; margin-top: 10px; font-weight: bold; font-size: 13px; }
 
-        /* تنسيق شاشة النتيجة المطابقة للصورة تماماً */
-        .success-icon-circle {
-            width: 75px;
-            height: 75px;
+        /* تصميم النتيجة مطابق للصورة الحرفية */
+        .success-circle {
+            width: 70px;
+            height: 70px;
             background-color: #2ecc71;
             color: white;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 45px;
+            font-size: 40px;
             margin: 0 auto 15px auto;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
-        .active-status-title {
-            font-size: 24px;
+        .status-title {
+            font-size: 22px;
             font-weight: bold;
             color: #111;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
-        .separator-line {
+        .line-separator {
             border: none;
             border-top: 1px solid #e1e8ed;
-            margin: 18px 0;
+            margin: 20px 0;
         }
-        .data-label {
+        .field-label {
             font-size: 13px;
-            color: #666;
-            margin-bottom: 3px;
+            color: #555;
+            margin-bottom: 4px;
         }
-        .data-value {
+        .field-value {
             font-size: 16px;
             font-weight: bold;
-            color: #111;
+            color: #000;
         }
-        .footer-decor {
+        /* الزخرفة السفلية المطابقة */
+        .footer-pattern {
             background: #3b5998;
             height: 25px;
             width: 100%;
@@ -142,64 +146,64 @@
 <body>
 
 <div class="top-header">
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
         <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="Royal Oman Police">
         <span style="font-size: 11px; font-weight: bold; color: #333; line-height: 1.2;">شرطة عمان السلطانية<br>ROYAL OMAN POLICE</span>
     </div>
-    <div style="display: flex; align-items: center; gap: 12px;">
+    <div style="display: flex; align-items: center; gap: 10px;">
         <span style="font-size: 13px; font-weight: bold; color: #003366;">Oman e Visa</span>
-        <button class="menu-btn">☰</button>
+        <div class="menu-icon">☰</div>
     </div>
 </div>
 
-<div class="blue-banner">
-    <button class="lang-switch">العربية</button>
+<div class="blue-bar">
+    <button class="lang-btn">العربية</button>
 </div>
 
-<div class="main-container">
-    <div class="visa-card" id="searchScreen">
+<div class="container">
+    <div class="card" id="loginCard">
         <h2>Visa Status Inquiry</h2>
-        <input type="text" id="documentInput" placeholder="Enter Travel Document Number">
-        <button class="action-btn" onclick="verifyVisa()">Search</button>
-        <div id="errorMsg" class="error-text"></div>
+        <input type="text" id="passportInput" placeholder="Enter Travel Document Number">
+        <button class="btn" onclick="checkVisa()">Search</button>
+        <div id="errorMessage" class="error"></div>
     </div>
 
-    <div class="visa-card" id="resultScreen" style="display: none;">
-        <div class="success-icon-circle">✓</div>
-        <div class="active-status-title">Visa is Active</div>
+    <div class="card" id="resultCard" style="display: none; text-align: center;">
+        <div class="success-circle">✓</div>
+        <div class="status-title">Visa is Active</div>
         
-        <hr class="separator-line">
+        <hr class="line-separator">
 
-        <div class="data-label">Visa Number</div>
-        <div class="data-value" id="val_visaNo"></div>
+        <div class="field-label">Visa Number</div>
+        <div class="field-value" id="res_visaNo"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Given Name</div>
-        <div class="data-value" id="val_givenName"></div>
+        <div class="field-label" style="margin-top: 15px;">Given Name</div>
+        <div class="field-value" id="res_givenName"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Family Name</div>
-        <div class="data-value" id="val_familyName"></div>
+        <div class="field-label" style="margin-top: 15px;">Family Name</div>
+        <div class="field-value" id="res_familyName"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Gender</div>
-        <div class="data-value" id="val_gender"></div>
+        <div class="field-label" style="margin-top: 15px;">Gender</div>
+        <div class="field-value" id="res_gender"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Nationality</div>
-        <div class="data-value" id="val_nat"></div>
+        <div class="field-label" style="margin-top: 15px;">Nationality</div>
+        <div class="field-value" id="res_nat"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Travel Document Number</div>
-        <div class="data-value" id="val_documentNo"></div>
+        <div class="field-label" style="margin-top: 15px;">Travel Document Number</div>
+        <div class="field-value" id="res_passport"></div>
 
-        <div class="data-label" style="margin-top: 15px;">Travel Document Expiry Date</div>
-        <div class="data-value" id="val_expiry"></div>
+        <div class="field-label" style="margin-top: 15px;">Travel Document Expiry Date</div>
+        <div class="field-value" id="res_expiry"></div>
 
-        <button class="action-btn" onclick="goBack()" style="background-color: #6c757d; margin-top: 25px;">Back</button>
+        <button class="btn" onclick="logout()" style="background-color: #6c757d; margin-top: 25px;">Back</button>
     </div>
 </div>
 
-<div class="footer-decor"></div>
+<div class="footer-pattern"></div>
 
 <script>
-    // قاعدة البيانات (قم بإضافة أي شخص هنا)
-    const visaDatabase = [
+    // قاعدة بيانات العملاء (يمكنك إضافة عدد غير محدود من الأشخاص هنا)
+    const database = [
         {
             passport: "N0152762726",
             visaNo: "58949899",
@@ -209,40 +213,41 @@
             nat: "SYRIAN ARAB REPUBLIC",
             expiry: "31-07-2030"
         }
+        // أضف عملاء جدد هنا بنفس الطريقة...
     ];
 
-    function verifyVisa() {
-        const inputVal = document.getElementById("documentInput").value.trim().toUpperCase();
-        const errorDiv = document.getElementById("errorMsg");
+    function checkVisa() {
+        const inputVal = document.getElementById("passportInput").value.trim().toUpperCase();
+        const errorDiv = document.getElementById("errorMessage");
         
         if(!inputVal) {
             errorDiv.innerText = "Please enter the travel document number!";
             return;
         }
 
-        const foundUser = visaDatabase.find(item => item.passport.toUpperCase() === inputVal);
+        const client = database.find(c => c.passport.toUpperCase() === inputVal);
 
-        if(foundUser) {
-            document.getElementById("searchScreen").style.display = "none";
-            document.getElementById("resultScreen").style.display = "block";
+        if(client) {
+            document.getElementById("loginCard").style.display = "none";
+            document.getElementById("resultCard").style.display = "block";
             
-            document.getElementById("val_visaNo").innerText = foundUser.visaNo;
-            document.getElementById("val_givenName").innerText = foundUser.givenName;
-            document.getElementById("val_familyName").innerText = foundUser.familyName;
-            document.getElementById("val_gender").innerText = foundUser.gender;
-            document.getElementById("val_nat").innerText = foundUser.nat;
-            document.getElementById("val_documentNo").innerText = foundUser.passport;
-            document.getElementById("val_expiry").innerText = foundUser.expiry;
+            document.getElementById("res_visaNo").innerText = client.visaNo;
+            document.getElementById("res_givenName").innerText = client.givenName;
+            document.getElementById("res_familyName").innerText = client.familyName;
+            document.getElementById("res_gender").innerText = client.gender;
+            document.getElementById("res_nat").innerText = client.nat;
+            document.getElementById("res_passport").innerText = client.passport;
+            document.getElementById("res_expiry").innerText = client.expiry;
         } else {
             errorDiv.innerText = "Sorry, visa data not found for this document number.";
         }
     }
 
-    function goBack() {
-        document.getElementById("documentInput").value = "";
-        document.getElementById("errorMsg").innerText = "";
-        document.getElementById("resultScreen").style.display = "none";
-        document.getElementById("searchScreen").style.display = "block";
+    function logout() {
+        document.getElementById("passportInput").value = "";
+        document.getElementById("errorMessage").innerText = "";
+        document.getElementById("resultCard").style.display = "none";
+        document.getElementById("loginCard").style.display = "block";
     }
 </script>
 
