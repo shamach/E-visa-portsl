@@ -17,62 +17,20 @@
             box-sizing: border-box;
         }
         
-        /* ترويسة احترافية مطابقة تماماً للصورة الجديدة */
-        .top-header {
+        /* ترويسة تعتمد على الصورة الأصلية 100% */
+        .top-header-img {
+            width: 100%;
             background-color: #ffffff;
             border-bottom: 1px solid #dcdcdc;
-            padding: 12px 20px;
+            overflow: hidden;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            justify-content: flex-start;
         }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .header-left img {
-            height: 42px;
-            width: auto;
-        }
-        .police-text {
-            font-size: 11px;
-            font-weight: bold;
-            color: #111;
-            line-height: 1.3;
-            text-align: left;
-        }
-        .header-center {
-            text-align: center;
-        }
-        .header-center .visa-title-en {
-            font-size: 15px;
-            font-weight: bold;
-            color: #002D62;
-        }
-        .header-center .visa-title-ar {
-            font-size: 12px;
-            color: #444;
-            margin-top: 2px;
-        }
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .visa-logo-img {
-            height: 36px;
-            width: auto;
-        }
-        .header-menu-btn {
-            background-color: #3b5998;
-            color: white;
-            border: none;
-            padding: 6px 10px;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            line-height: 1;
+        .top-header-img img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
         }
 
         .main-container {
@@ -155,44 +113,58 @@
             color: #111;
         }
         
-        /* الشريط السفلي والزخرفة المتسلسلة */
+        /* الشريط السفلي والزخرفة الدقيقة المطابقة للصورة تماماً */
         .footer-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #3b5998;
+            background-color: #4a5fc1; /* تعديل درجة اللون الأزرق لتطابق تذييل الصورة */
         }
         .footer-pattern-bar {
-            background-color: #3b5998;
-            height: 28px;
-            border-top: 1px solid #8ab4f8;
-            border-bottom: 1px solid #2d4373;
-            display: flex;
-            align-items: center;
-            justify-content: space-around;
+            background-color: #4a5fc1;
+            height: 32px;
+            position: relative;
             overflow: hidden;
         }
-        .ornament-item {
-            color: #ffffff;
-            font-size: 15px;
-            letter-spacing: 4px;
-            opacity: 0.95;
-            white-space: nowrap;
+        
+        /* الخطوط البيضاء الأفقية الدقيقة */
+        .footer-pattern-bar::before,
+        .footer-pattern-bar::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 1.5px;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 2;
         }
+        .footer-pattern-bar::before { top: 2px; }
+        .footer-pattern-bar::after { bottom: 2px; }
+
+        /* طبقة تكرار الرسم الزخرفي الهندسي */
+        .footer-pattern-inner {
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="34" height="32" viewBox="0 0 34 32"><path d="M17,4 L28,16 L17,28 L6,16 Z" fill="none" stroke="white" stroke-width="1.2"/><path d="M17,8 L24,16 L17,24 L10,16 Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="0.8"/><circle cx="17" cy="16" r="1.5" fill="white"/></svg>');
+            background-repeat: repeat-x;
+            background-position: center;
+        }
+
         .footer-bottom-bar {
-            background-color: #3b5998;
-            padding: 10px 15px;
+            background-color: #4a5fc1;
+            padding: 8px 15px;
             display: flex;
             align-items: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
         }
-        .footer-menu-btn-bottom {
+        .footer-menu-btn {
             background-color: transparent;
             color: white;
             border: 1px solid #ffffff;
-            padding: 6px 10px;
+            padding: 4px 10px;
             border-radius: 4px;
-            font-size: 18px;
+            font-size: 16px;
             cursor: pointer;
             line-height: 1;
         }
@@ -200,30 +172,9 @@
 </head>
 <body>
 
-<!-- الترويسة العلوية المطابقة للصورة الجديدة -->
-<div class="top-header">
-    <div class="header-left">
-        <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="Royal Oman Police" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Emblem_of_Oman.svg/120px-Emblem_of_Oman.svg.png'">
-        <div class="police-text">
-            شرطة عمان السلطانية<br>ROYAL OMAN POLICE
-        </div>
-    </div>
-    
-    <div class="header-center">
-        <div class="visa-title-en">Oman e Visa</div>
-        <div class="visa-title-ar">التأشيرة الإلكترونية العمانية</div>
-    </div>
-
-    <div class="header-right">
-        <!-- شعار الـ e-visa البنفسجي -->
-        <svg class="visa-logo-img" viewBox="0 0 160 50" xmlns="http://www.w3.org/2000/svg">
-            <ellipse cx="65" cy="25" rx="20" ry="18" fill="#b01262"/>
-            <text x="57" y="33" fill="white" font-family="Arial" font-weight="bold" font-size="22">e</text>
-            <path d="M65 12 C95 12, 110 32, 140 28" stroke="#b01262" stroke-width="4" fill="none"/>
-            <text x="95" y="32" fill="#555" font-family="Arial" font-style="italic" font-weight="bold" font-size="22">visa</text>
-        </svg>
-        <button class="header-menu-btn">☰</button>
-    </div>
+<!-- عرض صورة الترويسة الأصلية مباشرة -->
+<div class="top-header-img">
+    <img src="header.jpg" alt="Oman e Visa Header">
 </div>
 
 <div class="main-container">
@@ -265,13 +216,13 @@
     </div>
 </div>
 
-<!-- الشريط السفلي مع الزخرفة المتسلسلة -->
+<!-- الشريط السفلي مع الزخرفة الهندسية الجديدة والمطابقة تماماً -->
 <div class="footer-container">
     <div class="footer-pattern-bar">
-        <div class="ornament-item">❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖</div>
+        <div class="footer-pattern-inner"></div>
     </div>
     <div class="footer-bottom-bar">
-        <button class="footer-menu-btn-bottom" onclick="goBack()">☰</button>
+        <button class="footer-menu-btn" onclick="goBack()">☰</button>
     </div>
 </div>
 
