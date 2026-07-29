@@ -11,6 +11,10 @@
             margin: 0;
             padding: 0;
             direction: ltr;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 50px;
+            box-sizing: border-box;
         }
         .top-header {
             background-color: #ffffff;
@@ -26,11 +30,11 @@
             gap: 12px;
         }
         .logo-container img {
-            height: 45px;
+            height: 40px;
             width: auto;
         }
         .menu-btn {
-            background-color: #003366;
+            background-color: #2b4c7e;
             color: white;
             border: none;
             padding: 6px 12px;
@@ -40,13 +44,13 @@
         }
         .blue-banner {
             background-color: #3b5998;
-            padding: 8px 20px;
+            padding: 6px 20px;
         }
         .lang-switch {
             background-color: #e4e6eb;
             color: #003366;
             border: none;
-            padding: 5px 15px;
+            padding: 4px 14px;
             border-radius: 4px;
             font-weight: bold;
             font-size: 13px;
@@ -57,7 +61,6 @@
             justify-content: center;
             align-items: center;
             padding: 25px 15px;
-            min-height: 70vh;
         }
         .visa-card {
             background: #ffffff;
@@ -85,7 +88,7 @@
             font-size: 15px;
         }
         .action-btn {
-            background-color: #003366;
+            background-color: #2b4c7e;
             color: white;
             border: none;
             padding: 12px;
@@ -96,7 +99,7 @@
             font-weight: bold;
             margin-top: 15px;
         }
-        .action-btn:hover { background-color: #002244; }
+        .action-btn:hover { background-color: #1f375e; }
         .error-text { color: #d9534f; margin-top: 12px; font-weight: bold; font-size: 13px; }
 
         .success-icon-circle {
@@ -132,15 +135,19 @@
             font-weight: bold;
             color: #111;
         }
+        
+        /* شريط التزيين السفلي المطابق تماماً للفيديو الأصلي */
         .footer-decor {
-            background: #3b5998;
-            height: 25px;
-            width: 100%;
-            position: fixed;
+            position: absolute;
             bottom: 0;
             left: 0;
-            background-image: repeating-linear-gradient(45deg, #2d4373, #2d4373 10px, #3b5998 10px, #3b5998 20px);
-            border-top: 2px solid #fff;
+            width: 100%;
+            height: 35px;
+            background-color: #3b5998;
+            background-image: radial-gradient(#2b4c7e 20%, transparent 20%), radial-gradient(#2b4c7e 20%, transparent 20%);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+            border-top: 2px solid #ffffff;
         }
     </style>
 </head>
@@ -148,13 +155,13 @@
 
 <div class="top-header">
     <div class="logo-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Emblem_of_ Oman.svg/800px-Emblem_of_Oman.svg.png" alt="Royal Oman Police Emblem" onerror="this.src='https://www.rop.gov.om/arabic/images/logo_ar.png'">
-        <div style="font-size: 11px; font-weight: bold; color: #333; line-height: 1.2; text-align: left;">
+        <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="Royal Oman Police" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Emblem_of_Oman.svg/120px-Emblem_of_Oman.svg.png'">
+        <div style="font-size: 10px; font-weight: bold; color: #333; line-height: 1.2; text-align: left;">
             شرطة عمان السلطانية<br>ROYAL OMAN POLICE
         </div>
     </div>
-    <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 13px; font-weight: bold; color: #003366;">Oman e Visa</span>
+    <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 12px; font-weight: bold; color: #2b4c7e;">Oman e Visa</span>
         <button class="menu-btn">☰</button>
     </div>
 </div>
@@ -211,15 +218,6 @@
             visaNo: "58949899",
             givenName: "AHMAD SAMEER",
             familyName: "JARWA",
-            gender: "Male",
-            nat: "SYRIAN ARAB REPUBLIC",
-            expiry: "31-07-2030"
-        }
-        {
-            passport: "N099999999",
-            visaNo: "58941111",
-            givenName: "MOHAMAD FARES",
-            familyName: "KHALIL",
             gender: "Male",
             nat: "SYRIAN ARAB REPUBLIC",
             expiry: "31-07-2030"
