@@ -1,49 +1,63 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الاستعلام عن التأشيرة الإلكترونية</title>
+    <title>Oman e Visa - Royal Oman Police</title>
     <style>
         body { 
-            font-family: Tahoma, Arial, sans-serif; 
-            background-color: #f2f4f7; 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif; 
+            background-color: #f7f9fa; 
             margin: 0; 
-            padding: 20px; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
+            padding: 0; 
+            direction: ltr; 
+        }
+        /* الهيدر العلوي يشبه الموقع الرسمي تماماً */
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #e1e8ed;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            height: 45px;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 70px);
+            padding: 20px;
         }
         .card { 
             background: white; 
-            padding: 25px; 
+            padding: 30px; 
             border-radius: 8px; 
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08); 
             width: 100%; 
             max-width: 420px; 
             text-align: center; 
-            border-top: 4px solid #003366; 
         }
         h2 { 
-            color: #003366; 
-            margin: 15px 0; 
+            color: #222; 
+            margin: 15px 0 25px 0; 
             font-size: 20px; 
-        }
-        .sub-title {
-            color: #666;
-            font-size: 13px;
-            margin-bottom: 20px;
         }
         input { 
             width: 100%; 
-            padding: 12px; 
+            padding: 12px 15px; 
             margin: 10px 0; 
-            border: 1px solid #ccc; 
+            border: 1px solid #ccd6dd; 
             border-radius: 4px; 
             box-sizing: border-box; 
-            text-align: right; 
+            text-align: left; 
             font-size: 15px; 
+        }
+        input:focus {
+            border-color: #004a99;
+            outline: none;
         }
         button.btn { 
             background-color: #003366; 
@@ -55,105 +69,128 @@
             font-size: 15px; 
             cursor: pointer; 
             font-weight: bold; 
-            margin-top: 10px; 
+            margin-top: 15px; 
         }
         button.btn:hover { background-color: #002244; }
-        .error { color: #d9534f; margin-top: 12px; font-weight: bold; font-size: 13px; }
+        .error { color: #d9534f; margin-top: 15px; font-weight: bold; font-size: 13px; }
         
-        /* تنسيق جدول النتائج ليطابق الشكل الرسمي */
-        .result-table { 
-            width: 100%; 
-            text-align: right; 
-            border-collapse: collapse; 
-            margin-top: 10px; 
+        /* تصميم النتيجة تماماً مثل الفيديو */
+        .success-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #28a745;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 32px;
+            margin: 0 auto 15px auto;
         }
-        .result-table tr { 
-            border-bottom: 1px solid #eee; 
-        }
-        .result-table th { 
-            color: #555; 
-            font-size: 13px; 
-            padding: 10px 5px; 
-            width: 35%; 
+        .status-text {
+            font-size: 20px;
             font-weight: bold;
+            color: #222;
+            margin-bottom: 25px;
         }
-        .result-table td { 
-            color: #222; 
-            font-size: 13px; 
-            padding: 10px 5px; 
-            width: 65%; 
+        .details-group {
+            text-align: center;
+            margin-bottom: 15px;
         }
-        .badge { 
-            background: #e1f5fe; 
-            color: #0288d1; 
-            padding: 3px 8px; 
-            border-radius: 3px; 
-            font-weight: bold; 
-            font-size: 12px;
-            display: inline-block;
+        .label {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 2px;
+        }
+        .value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #111;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #eee;
+            margin: 15px 0;
         }
     </style>
 </head>
 <body>
 
-<!-- شاشة البحث -->
-<div class="card" id="loginCard">
-    <h2>الاستعلام عن التأشيرة الإلكترونية</h2>
-    <div class="sub-title">شرطة عمان السلطانية</div>
-    <input type="text" id="passportInput" placeholder="أدخل رقم جواز السفر">
-    <button class="btn" onclick="checkVisa()">بحث</button>
-    <div id="errorMessage" class="error"></div>
+<div class="header">
+    <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="Royal Oman Police">
+    <span style="font-size: 14px; font-weight: bold; color: #003366;">Oman e Visa</span>
 </div>
 
-<!-- شاشة عرض النتائج -->
-<div class="card" id="resultCard" style="display: none;">
-    <h2>بيانات التأشيرة الرسمية</h2>
-    <table class="result-table">
-        <tr>
-            <th>حالة التأشيرة:</th>
-            <td><span class="badge" id="res_status"></span></td>
-        </tr>
-        <tr>
-            <th>اسم العميل:</th>
-            <td id="res_name"></td>
-        </tr>
-        <tr>
-            <th>رقم التأشيرة:</th>
-            <td id="res_visaNo"></td>
-        </tr>
-        <tr>
-            <th>الدولة:</th>
-            <td id="res_country"></td>
-        </tr>
-        <tr>
-            <th>رقم الجواز:</th>
-            <td id="res_passport"></td>
-        </tr>
-        <tr>
-            <th>الجنسية:</th>
-            <td id="res_nat"></td>
-        </tr>
-        <tr>
-            <th>تاريخ الانتهاء:</th>
-            <td id="res_expiry"></td>
-        </tr>
-    </table>
-    <button class="btn" onclick="logout()" style="background-color: #6c757d; margin-top: 20px;">رجوع</button>
+<div class="container">
+    <div class="card" id="loginCard">
+        <h2>Visa Status Inquiry</h2>
+        <input type="text" id="passportInput" placeholder="Enter Travel Document Number">
+        <button class="btn" onclick="checkVisa()">Search</button>
+        <div id="errorMessage" class="error"></div>
+    </div>
+
+    <div class="card" id="resultCard" style="display: none;">
+        <div class="success-icon">✓</div>
+        <div class="status-text">Visa is Active</div>
+
+        <div class="details-group">
+            <div class="label">Visa Number</div>
+            <div class="value" id="res_visaNo"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Given Name</div>
+            <div class="value" id="res_givenName"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Family Name</div>
+            <div class="value" id="res_familyName"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Gender</div>
+            <div class="value" id="res_gender"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Nationality</div>
+            <div class="value" id="res_nat"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Travel Document Number</div>
+            <div class="value" id="res_passport"></div>
+        </div>
+        <hr class="divider">
+
+        <div class="details-group">
+            <div class="label">Travel Document Expiry Date</div>
+            <div class="value" id="res_expiry"></div>
+        </div>
+
+        <button class="btn" onclick="logout()" style="background-color: #6c757d; margin-top: 20px;">Back</button>
+    </div>
 </div>
 
 <script>
-    // قاعدة بيانات العملاء (أضف وعدل براحتك هنا)
+    // قاعدة بيانات العملاء (يمكنك إضافة أو تعديل الأشخاص هنا بالإنجليزية بكل سهولة)
     const database = [
         {
             passport: "N0152762726",
-            name: "ماهر مرجان",
-            visaNo: "١٩٨٢٧٦٢٥",
-            country: "الكويت",
-            nat: "سوري",
-            expiry: "٢٥-٠٩-٢٠٢٦",
-            status: "سارية المفعول"
+            visaNo: "58949899",
+            givenName: "MAHER",
+            familyName: "MURJAN",
+            gender: "Male",
+            nat: "SYRIAN ARAB REPUBLIC",
+            expiry: "25-09-2026"
         }
-        // أضف أشخاص آخرين هنا بنفس الطريقة...
+        // أضف أشخاص آخرين هنا إذا أردت...
     ];
 
     function checkVisa() {
@@ -161,7 +198,7 @@
         const errorDiv = document.getElementById("errorMessage");
         
         if(!inputVal) {
-            errorDiv.innerText = "الرجاء إدخال رقم جواز السفر!";
+            errorDiv.innerText = "Please enter the travel document number!";
             return;
         }
 
@@ -171,15 +208,15 @@
             document.getElementById("loginCard").style.display = "none";
             document.getElementById("resultCard").style.display = "block";
             
-            document.getElementById("res_status").innerText = client.status;
-            document.getElementById("res_name").innerText = client.name;
             document.getElementById("res_visaNo").innerText = client.visaNo;
-            document.getElementById("res_country").innerText = client.country;
-            document.getElementById("res_passport").innerText = client.passport;
+            document.getElementById("res_givenName").innerText = client.givenName;
+            document.getElementById("res_familyName").innerText = client.familyName;
+            document.getElementById("res_gender").innerText = client.gender;
             document.getElementById("res_nat").innerText = client.nat;
+            document.getElementById("res_passport").innerText = client.passport;
             document.getElementById("res_expiry").innerText = client.expiry;
         } else {
-            errorDiv.innerText = "عذراً، رقم الجواز غير مدخل أو غير صحيح.";
+            errorDiv.innerText = "Sorry, visa data not found for this document number.";
         }
     }
 
