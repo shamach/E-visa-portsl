@@ -63,7 +63,7 @@
             text-align: center;
             outline: none;
         }
-        /* زر البحث باللون الأحمر كما طلبت */
+        /* زر البحث باللون الأحمر */
         .search-body button {
             background-color: #d9534f;
             color: #fff;
@@ -192,33 +192,107 @@
 </div>
 
 <script>
-    /* 
-      قاعدة البيانات مرتبة ومنظمة بدقة.
-      يمكنك بسهولة إضافة أشخاص جدد (حتى 50 وأكثر) عن طريق نسخ أي سطر وتعديل بياناته،
-      النظام يبحث تلقائياً سواء أدخل المستخدم (رقم التأشيرة) أو (رقم الجواز).
-    */
+    /* قاعدة البيانات: 25 شخصاً (ذكور وإناث) برقم التأشيرة والجواز، وجميعهم بجنسية الجمهورية العربية السورية */
     const visaDatabase = {
-        // الشخص الأول
+        // 1
         "58949899": { visaNumber: "58949899", docNumber: "N01618579", givenName: "AHMAD SAMEER", familyName: "JARWA", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "31-07-2030" },
         "N01618579": { visaNumber: "58949899", docNumber: "N01618579", givenName: "AHMAD SAMEER", familyName: "JARWA", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "31-07-2030" },
 
-        // الشخص الثاني
-        "10000001": { visaNumber: "10000001", docNumber: "A1111111", givenName: "MOHAMMED", familyName: "AL BALUSHI", gender: "Male", nationality: "SULTANATE OF OMAN", docExpiry: "10-01-2030" },
-        "A1111111": { visaNumber: "10000001", docNumber: "A1111111", givenName: "MOHAMMED", familyName: "AL BALUSHI", gender: "Male", nationality: "SULTANATE OF OMAN", docExpiry: "10-01-2030" },
+        // 2
+        "58949802": { visaNumber: "58949802", docNumber: "N0223344", givenName: "FATIMA", familyName: "AL OMAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "12-05-2031" },
+        "N0223344": { visaNumber: "58949802", docNumber: "N0223344", givenName: "FATIMA", familyName: "AL OMAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "12-05-2031" },
 
-        // الشخص الثالث
-        "10000002": { visaNumber: "10000002", docNumber: "A2222222", givenName: "FATMA", familyName: "AL HINAI", gender: "Female", nationality: "SULTANATE OF OMAN", docExpiry: "15-02-2030" },
-        "A2222222": { visaNumber: "10000002", docNumber: "A2222222", givenName: "FATMA", familyName: "AL HINAI", gender: "Female", nationality: "SULTANATE OF OMAN", docExpiry: "15-02-2030" },
+        // 3
+        "58949803": { visaNumber: "58949803", docNumber: "N0334455", givenName: "MOHAMMED", familyName: "AL KATEB", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "20-08-2030" },
+        "N0334455": { visaNumber: "58949803", docNumber: "N0334455", givenName: "MOHAMMED", familyName: "AL KATEB", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "20-08-2030" },
 
-        // الشخص الرابع
-        "10000003": { visaNumber: "10000003", docNumber: "B3333333", givenName: "JOHN", familyName: "SMITH", gender: "Male", nationality: "UNITED KINGDOM", docExpiry: "20-03-2030" },
-        "B3333333": { visaNumber: "10000003", docNumber: "B3333333", givenName: "JOHN", familyName: "SMITH", gender: "Male", nationality: "UNITED KINGDOM", docExpiry: "20-03-2030" }
+        // 4
+        "58949804": { visaNumber: "58949804", docNumber: "N0445566", givenName: "NOOR", familyName: "HROUB", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "15-10-2032" },
+        "N0445566": { visaNumber: "58949804", docNumber: "N0445566", givenName: "NOOR", familyName: "HROUB", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "15-10-2032" },
 
-        /* 
-          يمكنك متابعة إضافة بقية الأشخاص هنا بنفس الترتيب تماماً:
-          , "رقم_التأشيرة": { visaNumber: "...", docNumber: "...", givenName: "...", familyName: "...", gender: "...", nationality: "...", docExpiry: "..." }
-          , "رقم_الجواز": { visaNumber: "...", docNumber: "...", givenName: "...", familyName: "...", gender: "...", nationality: "...", docExpiry: "..." }
-        */
+        // 5
+        "58949805": { visaNumber: "58949805", docNumber: "N0556677", givenName: "OMAR", familyName: "AL TURK", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "01-01-2031" },
+        "N0556677": { visaNumber: "58949805", docNumber: "N0556677", givenName: "OMAR", familyName: "AL TURK", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "01-01-2031" },
+
+        // 6
+        "58949806": { visaNumber: "58949806", docNumber: "N0667788", givenName: "SARA", familyName: "KABANI", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "18-03-2030" },
+        "N0667788": { visaNumber: "58949806", docNumber: "N0667788", givenName: "SARA", familyName: "KABANI", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "18-03-2030" },
+
+        // 7
+        "58949807": { visaNumber: "58949807", docNumber: "N0778899", givenName: "KHALED", familyName: "DAHESH", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "22-07-2031" },
+        "N0778899": { visaNumber: "58949807", docNumber: "N0778899", givenName: "KHALED", familyName: "DAHESH", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "22-07-2031" },
+
+        // 8
+        "58949808": { visaNumber: "58949808", docNumber: "N0889900", givenName: "LAYLA", familyName: "SUKAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "05-09-2030" },
+        "N0889900": { visaNumber: "58949808", docNumber: "N0889900", givenName: "LAYLA", familyName: "SUKAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "05-09-2030" },
+
+        // 9
+        "58949809": { visaNumber: "58949809", docNumber: "N0990011", givenName: "MAHMOUD", familyName: "ZEIN", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "14-11-2033" },
+        "N0990011": { visaNumber: "58949809", docNumber: "N0990011", givenName: "MAHMOUD", familyName: "ZEIN", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "14-11-2033" },
+
+        // 10
+        "58949810": { visaNumber: "58949810", docNumber: "N1001122", givenName: "HAYA", familyName: "BAKIR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "30-06-2030" },
+        "N1001122": { visaNumber: "58949810", docNumber: "N1001122", givenName: "HAYA", familyName: "BAKIR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "30-06-2030" },
+
+        // 11
+        "58949811": { visaNumber: "58949811", docNumber: "N1112233", givenName: "IBRAHIM", familyName: "AL RACHID", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "19-02-2031" },
+        "N1112233": { visaNumber: "58949811", docNumber: "N1112233", givenName: "IBRAHIM", familyName: "AL RACHID", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "19-02-2031" },
+
+        // 12
+        "58949812": { visaNumber: "58949812", docNumber: "N1223344", givenName: "REEM", familyName: "AL HASAN", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "25-04-2032" },
+        "N1223344": { visaNumber: "58949812", docNumber: "N1223344", givenName: "REEM", familyName: "AL HASAN", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "25-04-2032" },
+
+        // 13
+        "58949813": { visaNumber: "58949813", docNumber: "N1334455", givenName: "YOUSEF", familyName: "HAMWI", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "11-12-2030" },
+        "N1334455": { visaNumber: "58949813", docNumber: "N1334455", givenName: "YOUSEF", familyName: "HAMWI", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "11-12-2030" },
+
+        // 14
+        "58949814": { visaNumber: "58949814", docNumber: "N1445566", givenName: "AMAL", familyName: "DARWISH", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "03-08-2031" },
+        "N1445566": { visaNumber: "58949814", docNumber: "N1445566", givenName: "AMAL", familyName: "DARWISH", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "03-08-2031" },
+
+        // 15
+        "58949815": { visaNumber: "58949815", docNumber: "N1556677", givenName: "TARIQ", familyName: "MOAYED", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "17-09-2030" },
+        "N1556677": { visaNumber: "58949815", docNumber: "N1556677", givenName: "TARIQ", familyName: "MOAYED", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "17-09-2030" },
+
+        // 16
+        "58949816": { visaNumber: "58949816", docNumber: "N1667788", givenName: "ROULA", familyName: "SAYED", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "28-10-2032" },
+        "N1667788": { visaNumber: "58949816", docNumber: "N1667788", givenName: "ROULA", familyName: "SAYED", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "28-10-2032" },
+
+        // 17
+        "58949817": { visaNumber: "58949817", docNumber: "N1778899", givenName: "BASSEL", familyName: "SULTAN", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "04-03-2031" },
+        "N1778899": { visaNumber: "58949817", docNumber: "N1778899", givenName: "BASSEL", familyName: "SULTAN", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "04-03-2031" },
+
+        // 18
+        "58949818": { visaNumber: "58949818", docNumber: "N1889900", givenName: "DANA", familyName: "KASSAS", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "16-06-2030" },
+        "N1889900": { visaNumber: "58949818", docNumber: "N1889900", givenName: "DANA", familyName: "KASSAS", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "16-06-2030" },
+
+        // 19
+        "58949819": { visaNumber: "58949819", docNumber: "N1990011", givenName: "ZIAD", familyName: "SHAMI", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "21-01-2033" },
+        "N1990011": { visaNumber: "58949819", docNumber: "N1990011", givenName: "ZIAD", familyName: "SHAMI", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "21-01-2033" },
+
+        // 20
+        "58949820": { visaNumber: "58949820", docNumber: "N2001122", givenName: "MAHA", familyName: "NASSAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "09-05-2030" },
+        "N2001122": { visaNumber: "58949820", docNumber: "N2001122", givenName: "MAHA", familyName: "NASSAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "09-05-2030" },
+
+        // 21
+        "58949821": { visaNumber: "58949821", docNumber: "N2112233", givenName: "RAMI", familyName: "KHALIL", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "13-07-2031" },
+        "N2112233": { visaNumber: "58949821", docNumber: "N2112233", givenName: "RAMI", familyName: "KHALIL", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "13-07-2031" },
+
+        // 22
+        "58949822": { visaNumber: "58949822", docNumber: "N2223344", givenName: "YASMIN", familyName: "AL ATTAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "24-09-2030" },
+        "N2223344": { visaNumber: "58949822", docNumber: "N2223344", givenName: "YASMIN", familyName: "AL ATTAR", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "24-09-2030" },
+
+        // 23
+        "58949823": { visaNumber: "58949823", docNumber: "N2334455", givenName: "SAMER", familyName: "HADDAD", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "02-12-2032" },
+        "N2334455": { visaNumber: "58949823", docNumber: "N2334455", givenName: "SAMER", familyName: "HADDAD", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "02-12-2032" },
+
+        // 24
+        "58949824": { visaNumber: "58949824", docNumber: "N2445566", givenName: "LINA", familyName: "KARAJAH", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "15-04-2031" },
+        "N2445566": { visaNumber: "58949824", docNumber: "N2445566", givenName: "LINA", familyName: "KARAJAH", gender: "Female", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "15-04-2031" },
+
+        // 25
+        "58949825": { visaNumber: "58949825", docNumber: "N2556677", givenName: "FADI", familyName: "BITAR", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "19-10-2030" },
+        "N2556677": { visaNumber: "58949825", docNumber: "N2556677", givenName: "FADI", familyName: "BITAR", gender: "Male", nationality: "SYRIAN ARAB REPUBLIC", docExpiry: "19-10-2030" }
     };
 
     function checkVisa() {
