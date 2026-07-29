@@ -33,6 +33,7 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            background-color: #fcfcfc;
         }
         #wrapper {
             width: 100%;
@@ -95,16 +96,27 @@
 
         #resultView {
             width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             box-sizing: border-box;
+            padding: 20px 0;
+        }
+        .portlet-layout, .aui-w100, .portlet-column, .portlet-dropzone, .portlet-column-content, .portlet-body {
+            width: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            float: none !important;
         }
         .section-qr {
             width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
             box-sizing: border-box;
             background: #fff;
-            border: 1px solid #eee;
+            border: 1px solid #ddd;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
         }
         .qr-content {
             text-align: left;
@@ -121,16 +133,6 @@
             text-align: center;
             font-weight: bold;
         }
-        .back-btn {
-            background-color: #0066cc;
-            color: white;
-            padding: 8px 20px;
-            border: none;
-            border-radius: 4px;
-            margin-top: 15px;
-            cursor: pointer;
-            font-size: 14px;
-        }
 
         @media screen and (max-width: 768px) {
             .top_header {
@@ -146,7 +148,7 @@
                 width: auto;
             }
             .section-qr {
-                margin: 10px;
+                margin: 0 10px;
                 width: auto;
             }
         }
@@ -190,7 +192,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث الصحيحة -->
+        <!-- الواجهة الثانية: نتائج البحث (مطابقة للأصل تماماً بدون زر عودة) -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -200,7 +202,7 @@
                                 <section class="section-qr">
                                   <div class="row">
                                     <div class="col-lg-12 text-center">
-                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:20px; max-width: 100%; height: auto;">
+                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:10px; max-width: 100%; height: auto;">
                                         <br>
                                        <b class="sub_ttl">Visa is Active</b>
                                     </div>
@@ -229,9 +231,6 @@
                                         <p class="mb-0">Travel Document Expiry Date</p>
                                         <p class="fw-bold mb-2" id="res-exp"></p>
                                     </div>
-                                    <div style="text-align: center; margin-top: 20px;">
-                                        <button class="back-btn" onclick="resetSearch()">Back to Search</button>
-                                    </div>
                                   </div>
                                  </section>
                             </div>
@@ -245,7 +244,6 @@
         <div id="errorView" style="display: none;">
             <div class="error-box">
                 <p>⚠️ Error: Visa application not found or invalid number / البيانات المدخلة غير صحيحة أو التأشيرة غير موجودة.</p>
-                <button class="back-btn" onclick="resetSearch()">Try Again / محاولة أخرى</button>
             </div>
         </div>
 	</div>
@@ -298,13 +296,11 @@
         const val = document.getElementById('inputField').value.trim();
         if (!val) return;
 
-        // البحث الدقيق في قاعدة البيانات عن رقم الفيزا أو رقم الجواز
         let person = syrianDatabase.find(item => item.visa === val || item.doc === val);
         
         document.getElementById('queryView').style.display = 'none';
 
         if (person) {
-            // إذا وُجد الرقم: عرض بيانات التأشيرة الصحيحة
             document.getElementById('res-visa').innerText = person.visa;
             document.getElementById('res-fname').innerText = person.fname;
             document.getElementById('res-lname').innerText = person.lname;
@@ -313,20 +309,12 @@
             document.getElementById('res-doc').innerText = person.doc;
             document.getElementById('res-exp').innerText = person.exp;
 
-            document.getElementById('resultView').style.display = 'block';
+            document.getElementById('resultView').style.display = 'flex';
             document.getElementById('errorView').style.display = 'none';
         } else {
-            // إذا لم يوجد الرقم: إظهار رسالة الخطأ بوضوح
             document.getElementById('resultView').style.display = 'none';
             document.getElementById('errorView').style.display = 'block';
         }
-    }
-
-    function resetSearch() {
-        document.getElementById('inputField').value = '';
-        document.getElementById('queryView').style.display = 'block';
-        document.getElementById('resultView').style.display = 'none';
-        document.getElementById('errorView').style.display = 'none';
     }
 </script>
 </body>
