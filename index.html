@@ -13,7 +13,7 @@
             direction: ltr;
             min-height: 100vh;
             position: relative;
-            padding-bottom: 85px;
+            padding-bottom: 95px;
             box-sizing: border-box;
         }
         .top-header {
@@ -127,7 +127,7 @@
             color: #111;
         }
         
-        /* الشريط السفلي والزخرفة الأصلية المطابقة تماماً للصورة */
+        /* الشريط السفلي والزخرفة الدقيقة المطابقة تماماً */
         .footer-container {
             position: absolute;
             bottom: 0;
@@ -135,15 +135,22 @@
             width: 100%;
             background-color: #3b5998;
         }
-        .footer-pattern {
-            height: 26px;
+        .footer-pattern-bar {
             background-color: #3b5998;
-            /* استخدام صورة الزخرفة الأصلية لضمان التطابق التام 100% */
-            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAbAEMCABEA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
-            background-repeat: repeat-x;
-            background-size: auto 26px;
-            border-top: 1px solid #7c9ae8;
+            height: 28px;
+            border-top: 1px solid #8ab4f8;
             border-bottom: 1px solid #2d4373;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            overflow: hidden;
+        }
+        .ornament-item {
+            color: #ffffff;
+            font-size: 15px;
+            letter-spacing: 4px;
+            opacity: 0.95;
+            white-space: nowrap;
         }
         .footer-bottom-bar {
             background-color: #3b5998;
@@ -218,9 +225,11 @@
     </div>
 </div>
 
-<!-- الشريط السفلي -->
+<!-- الشريط السفلي مع الزخرفة المتسلسلة -->
 <div class="footer-container">
-    <div class="footer-pattern"></div>
+    <div class="footer-pattern-bar">
+        <div class="ornament-item">❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖ ❖</div>
+    </div>
     <div class="footer-bottom-bar">
         <button class="footer-menu-btn" onclick="goBack()">☰</button>
     </div>
