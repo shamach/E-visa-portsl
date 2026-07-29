@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام الاستعلام عن التأشيرة الإلكترونية - سلطنة عمان</title>
     <style>
+        /* CSS لتغيير الألوان والتصميم */
         body { 
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
             background-color: #f4f7f6; 
@@ -24,33 +25,22 @@
             width: 100%; 
             max-width: 450px; 
             text-align: center; 
-            border-top: 5px solid #004a99; 
+            border-top: 5px solid #004a99; /* اللون الأزرق الرسمي */
         }
-        .logo-icon {
-            font-size: 36px;
-            color: #004a99;
-            margin-bottom: 5px;
-            background: #e6f7ff;
-            width: 60px;
-            height: 60px;
-            line-height: 60px;
-            border-radius: 50%;
-            display: inline-block;
-            border: 1px solid #bae7ff;
+        .logo {
+            width: 80px; /* حجم شعار الخنجر */
+            margin-bottom: 15px;
         }
         h2 { 
             color: #004a99; 
-            margin-top: 10px;
-            margin-bottom: 5px; 
+            margin-bottom: 10px; 
             font-size: 22px;
             font-weight: bold;
         }
         p.subtitle {
-            color: #555;
-            font-size: 14px;
+            color: #333;
+            font-size: 15px;
             margin-bottom: 25px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
         }
         input { 
             width: 100%; 
@@ -68,7 +58,7 @@
             border-color: #004a99;
         }
         button.check-btn { 
-            background-color: #004a99; 
+            background-color: #004a99; /* اللون الأزرق الرسمي */
             color: white; 
             border: none; 
             padding: 15px; 
@@ -78,9 +68,10 @@
             cursor: pointer; 
             font-weight: bold; 
             margin-top: 15px;
+            transition: background-color 0.3s;
         }
         button.check-btn:hover { 
-            background-color: #003580; 
+            background-color: #003580; /* درجة أغمق عند التحويم */
         }
         .error { 
             color: #d9534f; 
@@ -106,7 +97,7 @@
         }
         .success-box p strong {
             color: #555;
-            width: 120px;
+            width: 120px; /* تحديد عرض التسميات */
             display: inline-block;
         }
         .badge { 
@@ -133,38 +124,40 @@
 </head>
 <body>
 
-<!-- شاشة البحث -->
+<!-- شاشة تسجيل الدخول (البحث) -->
 <div class="card" id="loginCard">
-    <div class="logo-icon">🇴🇲</div>
+    <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="شعار شرطة عمان السلطانية" class="logo">
     <h2>شرطة عمان السلطانية</h2>
     <p class="subtitle">نظام الاستعلام عن حالة التأشيرة الإلكترونية</p>
     <input type="text" id="passportInput" placeholder="أدخل رقم جواز السفر" aria-label="رقم جواز السفر">
     <button class="check-btn" onclick="checkVisa()">استعلام</button>
     <div id="errorMessage" class="error"></div>
-    <p style="font-size: 11px; color: #999; margin-top: 25px;">© الإدارة العامة للجوازات والإقامة</p>
+    <p style="font-size: 12px; color: #999; margin-top: 30px;">© الإدارة العامة للجوازات والإقامة</p>
 </div>
 
-<!-- شاشة النتيجة -->
+<!-- شاشة عرض البيانات (بعد النجاح) -->
 <div class="card" id="resultCard" style="display: none;">
-    <div class="logo-icon">🇴🇲</div>
-    <h2>شرطة عمان السلطانية</h2>
-    <p class="subtitle">بيانات التأشيرة الرسمية</p>
+    <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="شعار شرطة عمان السلطانية" class="logo">
+    <h2 style="font-size: 20px;">بيانات التأشيرة الرسمية</h2>
     <div class="success-box" id="visaDetails"></div>
     <button class="close-btn" onclick="logout()">رجوع</button>
 </div>
 
 <script>
-    // قاعدة بيانات العملاء (يمكنك إضافة مئات الأسماء هنا)
+    // قاعدة بيانات العملاء
+    // أضف، عدّل، أو احذف الأشخاص هنا
     const database = [
         {
             passport: "N0152762726",
-            name: "ماهر مرجان",
-            visaNo: "١٩٨٢٧٦٢٥",
+            name: "ماهر مرجان", // تم تغيير الاسم للعربية
+            visaNo: "١٩٨٢٧٦٢٥",   // أرقام عربية
             country: "الكويت",
-            nat: "سوري",
-            expiry: "٢٥-٠٩-٢٠٢٦",
+            nat: "سوري",         // الجنسية عربية
+            expiry: "٢٥-٠٩-٢٠٢٦", // التاريخ عربي
             status: "سارية المفعول"
         }
+        // مثال لإضافة شخص ثاني:
+        // ,{ passport: "P1234567", name: "أحمد علي", ... }
     ];
 
     function checkVisa() {
@@ -176,9 +169,11 @@
             return;
         }
 
+        // البحث في القاعدة
         const client = database.find(c => c.passport.toUpperCase() === inputVal);
 
         if(client) {
+            // نجاح
             document.getElementById("loginCard").style.display = "none";
             document.getElementById("resultCard").style.display = "block";
             
@@ -191,6 +186,7 @@
                 <p><strong>تاريخ الانتهاء:</strong> <span>${client.expiry}</span></p>
             `;
         } else {
+            // فشل
             errorDiv.innerText = "عذراً، لم يتم العثور على بيانات للتأشيرة برقم الجواز المدخل.";
         }
     }
