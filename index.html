@@ -29,7 +29,6 @@
         .ui-button { visibility: hidden; }
         .inactiveLinkMenu { pointer-events: none; cursor: default; }
 
-        /* تنسيقات متجاوبة لجميع الأجهزة */
         body {
             margin: 0;
             padding: 0;
@@ -94,7 +93,6 @@
             background-color: #c9302c;
         }
 
-        /* تحسين استجابة حاوية النتيجة للشاشات الصغيرة */
         #resultView {
             width: 100%;
             box-sizing: border-box;
@@ -112,15 +110,35 @@
             text-align: left;
             padding: 0 10px;
         }
+        .error-box {
+            background-color: #f2dede;
+            border: 1px solid #ebccd1;
+            color: #a94442;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 30px auto;
+            max-width: 500px;
+            text-align: center;
+            font-weight: bold;
+        }
+        .back-btn {
+            background-color: #0066cc;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 4px;
+            margin-top: 15px;
+            cursor: pointer;
+            font-size: 14px;
+        }
 
-        /* تعديلات ميديا كويري للموبايلات والتابلت */
         @media screen and (max-width: 768px) {
             .top_header {
                 height: auto !important;
                 padding: 10px 0;
             }
             .menu_ul_set {
-                display: none; /* إخفاء القائمة العلوية الضيقة في الموبايل لتجنب التداخل */
+                display: none;
             }
             .search-container {
                 margin: 20px 10px;
@@ -172,7 +190,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث (نفس السورس كود الأصلي بدقة مع دعم التجاوب) -->
+        <!-- الواجهة الثانية: نتائج البحث الصحيحة -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -191,25 +209,28 @@
                                     <br clear="all">
                                     <div class="qr-content">
                                         <p class="mb-0">Visa Number</p>
-                                        <p class="fw-bold mb-2" id="res-visa">58949899</p>
+                                        <p class="fw-bold mb-2" id="res-visa"></p>
 
                                         <p class="mb-0">Given Name</p>
-                                        <p class="fw-bold mb-2" id="res-fname">AHMAD SAMEER</p>
+                                        <p class="fw-bold mb-2" id="res-fname"></p>
                                            
                                         <p class="mb-0">Family Name</p>
-                                        <p class="fw-bold mb-2" id="res-lname">JARWA</p>
+                                        <p class="fw-bold mb-2" id="res-lname"></p>
                                            
                                         <p class="mb-0">Gender</p>
-                                        <p class="fw-bold mb-2" id="res-gender">Male</p>
+                                        <p class="fw-bold mb-2" id="res-gender"></p>
 
                                         <p class="mb-0">Nationality</p>
                                         <p class="fw-bold mb-2" id="res-nat">SYRIAN ARAB REPUBLIC</p>
 
                                         <p class="mb-0">Travel Document Number</p>
-                                        <p class="fw-bold mb-2" id="res-doc">N01618579</p>
+                                        <p class="fw-bold mb-2" id="res-doc"></p>
 
                                         <p class="mb-0">Travel Document Expiry Date</p>
-                                        <p class="fw-bold mb-2" id="res-exp">31-07-2030</p>
+                                        <p class="fw-bold mb-2" id="res-exp"></p>
+                                    </div>
+                                    <div style="text-align: center; margin-top: 20px;">
+                                        <button class="back-btn" onclick="resetSearch()">Back to Search</button>
                                     </div>
                                   </div>
                                  </section>
@@ -217,6 +238,14 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- واجهة الخطأ: في حال كان الرقم غير صحيح أو غير موجود -->
+        <div id="errorView" style="display: none;">
+            <div class="error-box">
+                <p>⚠️ Error: Visa application not found or invalid number / البيانات المدخلة غير صحيحة أو التأشيرة غير موجودة.</p>
+                <button class="back-btn" onclick="resetSearch()">Try Again / محاولة أخرى</button>
             </div>
         </div>
 	</div>
@@ -269,23 +298,35 @@
         const val = document.getElementById('inputField').value.trim();
         if (!val) return;
 
+        // البحث الدقيق في قاعدة البيانات عن رقم الفيزا أو رقم الجواز
         let person = syrianDatabase.find(item => item.visa === val || item.doc === val);
         
-        if (!person) {
-            person = syrianDatabase[Math.floor(Math.random() * syrianDatabase.length)];
-            person.visa = val.length > 6 ? person.visa : val;
-        }
-
-        document.getElementById('res-visa').innerText = person.visa;
-        document.getElementById('res-fname').innerText = person.fname;
-        document.getElementById('res-lname').innerText = person.lname;
-        document.getElementById('res-gender').innerText = person.gender;
-        document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
-        document.getElementById('res-doc').innerText = person.doc;
-        document.getElementById('res-exp').innerText = person.exp;
-
         document.getElementById('queryView').style.display = 'none';
-        document.getElementById('resultView').style.display = 'block';
+
+        if (person) {
+            // إذا وُجد الرقم: عرض بيانات التأشيرة الصحيحة
+            document.getElementById('res-visa').innerText = person.visa;
+            document.getElementById('res-fname').innerText = person.fname;
+            document.getElementById('res-lname').innerText = person.lname;
+            document.getElementById('res-gender').innerText = person.gender;
+            document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
+            document.getElementById('res-doc').innerText = person.doc;
+            document.getElementById('res-exp').innerText = person.exp;
+
+            document.getElementById('resultView').style.display = 'block';
+            document.getElementById('errorView').style.display = 'none';
+        } else {
+            // إذا لم يوجد الرقم: إظهار رسالة الخطأ بوضوح
+            document.getElementById('resultView').style.display = 'none';
+            document.getElementById('errorView').style.display = 'block';
+        }
+    }
+
+    function resetSearch() {
+        document.getElementById('inputField').value = '';
+        document.getElementById('queryView').style.display = 'block';
+        document.getElementById('resultView').style.display = 'none';
+        document.getElementById('errorView').style.display = 'none';
     }
 </script>
 </body>
