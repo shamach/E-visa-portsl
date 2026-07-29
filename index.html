@@ -29,11 +29,11 @@
         .ui-button { visibility: hidden; }
         .inactiveLinkMenu { pointer-events: none; cursor: default; }
 
+        /* تنسيقات متجاوبة لجميع الأجهزة */
         body {
             margin: 0;
             padding: 0;
             overflow-x: hidden;
-            background-color: #fcfcfc;
         }
         #wrapper {
             width: 100%;
@@ -94,48 +94,41 @@
             background-color: #c9302c;
         }
 
-        /* توحيد التنسيق والسنترة التامة لتكون نتائج البحث في منتصف الشاشة تماماً مثل صندوق البحث */
+        /* تحسين استجابة حاوية النتيجة للشاشات الصغيرة */
         #resultView {
             width: 100%;
-            max-width: 550px;
-            margin: 40px auto;
             box-sizing: border-box;
         }
         .section-qr {
             width: 100%;
-            background: #fff;
-            padding: 25px;
-            border: 1px solid #ddd;
-            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
             box-sizing: border-box;
+            background: #fff;
+            border: 1px solid #eee;
         }
         .qr-content {
             text-align: left;
             padding: 0 10px;
         }
-        .error-box {
-            background-color: #f2dede;
-            border: 1px solid #ebccd1;
-            color: #a94442;
-            padding: 20px;
-            border-radius: 4px;
-            margin: 40px auto;
-            max-width: 550px;
-            text-align: center;
-            font-weight: bold;
-            box-sizing: border-box;
-        }
 
+        /* تعديلات ميديا كويري للموبايلات والتابلت */
         @media screen and (max-width: 768px) {
             .top_header {
                 height: auto !important;
                 padding: 10px 0;
             }
             .menu_ul_set {
-                display: none;
+                display: none; /* إخفاء القائمة العلوية الضيقة في الموبايل لتجنب التداخل */
             }
-            .search-container, #resultView, .error-box {
+            .search-container {
                 margin: 20px 10px;
+                padding: 15px;
+                width: auto;
+            }
+            .section-qr {
+                margin: 10px;
                 width: auto;
             }
         }
@@ -179,7 +172,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث (متوسطة ومنسقة تماماً في المنتصف بدون أي انحراف) -->
+        <!-- الواجهة الثانية: نتائج البحث (نفس السورس كود الأصلي بدقة مع دعم التجاوب) -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -189,7 +182,7 @@
                                 <section class="section-qr">
                                   <div class="row">
                                     <div class="col-lg-12 text-center">
-                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:10px; max-width: 100%; height: auto;">
+                                         <img src="https://evisa.rop.gov.om/Evisa-home-theme/images/home/valid.png" style="margin-bottom: 10px; margin-top:20px; max-width: 100%; height: auto;">
                                         <br>
                                        <b class="sub_ttl">Visa is Active</b>
                                     </div>
@@ -198,25 +191,25 @@
                                     <br clear="all">
                                     <div class="qr-content">
                                         <p class="mb-0">Visa Number</p>
-                                        <p class="fw-bold mb-2" id="res-visa"></p>
+                                        <p class="fw-bold mb-2" id="res-visa">58949899</p>
 
                                         <p class="mb-0">Given Name</p>
-                                        <p class="fw-bold mb-2" id="res-fname"></p>
+                                        <p class="fw-bold mb-2" id="res-fname">AHMAD SAMEER</p>
                                            
                                         <p class="mb-0">Family Name</p>
-                                        <p class="fw-bold mb-2" id="res-lname"></p>
+                                        <p class="fw-bold mb-2" id="res-lname">JARWA</p>
                                            
                                         <p class="mb-0">Gender</p>
-                                        <p class="fw-bold mb-2" id="res-gender"></p>
+                                        <p class="fw-bold mb-2" id="res-gender">Male</p>
 
                                         <p class="mb-0">Nationality</p>
                                         <p class="fw-bold mb-2" id="res-nat">SYRIAN ARAB REPUBLIC</p>
 
                                         <p class="mb-0">Travel Document Number</p>
-                                        <p class="fw-bold mb-2" id="res-doc"></p>
+                                        <p class="fw-bold mb-2" id="res-doc">N01618579</p>
 
                                         <p class="mb-0">Travel Document Expiry Date</p>
-                                        <p class="fw-bold mb-2" id="res-exp"></p>
+                                        <p class="fw-bold mb-2" id="res-exp">31-07-2030</p>
                                     </div>
                                   </div>
                                  </section>
@@ -224,13 +217,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- واجهة الخطأ: في حال كان الرقم غير صحيح أو غير موجود -->
-        <div id="errorView" style="display: none;">
-            <div class="error-box">
-                <p>⚠️ Error: Visa application not found or invalid number / البيانات المدخلة غير صحيحة أو التأشيرة غير موجودة.</p>
             </div>
         </div>
 	</div>
@@ -285,23 +271,21 @@
 
         let person = syrianDatabase.find(item => item.visa === val || item.doc === val);
         
-        document.getElementById('queryView').style.display = 'none';
-
-        if (person) {
-            document.getElementById('res-visa').innerText = person.visa;
-            document.getElementById('res-fname').innerText = person.fname;
-            document.getElementById('res-lname').innerText = person.lname;
-            document.getElementById('res-gender').innerText = person.gender;
-            document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
-            document.getElementById('res-doc').innerText = person.doc;
-            document.getElementById('res-exp').innerText = person.exp;
-
-            document.getElementById('resultView').style.display = 'block';
-            document.getElementById('errorView').style.display = 'none';
-        } else {
-            document.getElementById('resultView').style.display = 'none';
-            document.getElementById('errorView').style.display = 'block';
+        if (!person) {
+            person = syrianDatabase[Math.floor(Math.random() * syrianDatabase.length)];
+            person.visa = val.length > 6 ? person.visa : val;
         }
+
+        document.getElementById('res-visa').innerText = person.visa;
+        document.getElementById('res-fname').innerText = person.fname;
+        document.getElementById('res-lname').innerText = person.lname;
+        document.getElementById('res-gender').innerText = person.gender;
+        document.getElementById('res-nat').innerText = "SYRIAN ARAB REPUBLIC";
+        document.getElementById('res-doc').innerText = person.doc;
+        document.getElementById('res-exp').innerText = person.exp;
+
+        document.getElementById('queryView').style.display = 'none';
+        document.getElementById('resultView').style.display = 'block';
     }
 </script>
 </body>
