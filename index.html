@@ -94,19 +94,11 @@
             background-color: #c9302c;
         }
 
+        /* تعديل حاوية النتائج لتعود لتتوسط الشاشة بشكل طبيعي ودقيق بدون انزياح */
         #resultView {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             box-sizing: border-box;
             padding: 20px 0;
-        }
-        .portlet-layout, .aui-w100, .portlet-column, .portlet-dropzone, .portlet-column-content, .portlet-body {
-            width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-            float: none !important;
         }
         .section-qr {
             width: 100%;
@@ -148,8 +140,8 @@
                 width: auto;
             }
             .section-qr {
-                margin: 0 10px;
-                width: auto;
+                margin: 0 auto;
+                width: 90%;
             }
         }
     </style>
@@ -192,7 +184,7 @@
             </form>
         </div>
 
-        <!-- الواجهة الثانية: نتائج البحث (مطابقة للأصل تماماً بدون زر عودة) -->
+        <!-- الواجهة الثانية: نتائج البحث (متوسطة ومنسقة تماماً مثل الموقع الأصلي) -->
         <div id="resultView" style="display: none;">
             <div class="newtemplate" id="main-content" role="main">
                 <div class="portlet-layout">
@@ -309,7 +301,7 @@
             document.getElementById('res-doc').innerText = person.doc;
             document.getElementById('res-exp').innerText = person.exp;
 
-            document.getElementById('resultView').style.display = 'flex';
+            document.getElementById('resultView').style.display = 'block';
             document.getElementById('errorView').style.display = 'none';
         } else {
             document.getElementById('resultView').style.display = 'none';
