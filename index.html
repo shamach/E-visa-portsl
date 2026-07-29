@@ -13,7 +13,7 @@
             direction: ltr;
             min-height: 100vh;
             position: relative;
-            padding-bottom: 95px;
+            padding-bottom: 120px;
             box-sizing: border-box;
         }
         
@@ -113,39 +113,37 @@
             color: #111;
         }
         
-        /* شريط التذييل */
+        /* تذييل الصفحة الكامل */
         .footer-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #4359be;
+            background-color: #4a63cb; /* اللون النيلي المطابق تماماً للصورة الأصلية */
         }
         
-        /* حاوية الزخرفة المكررة */
+        /* شريط الزخرفة المكررة بدقة عالية */
         .footer-pattern-bar {
-            background-color: #4359be;
-            height: 35px;
-            border-top: 2px solid rgba(255, 255, 255, 0.9);
-            border-bottom: 2px solid rgba(255, 255, 255, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
+            width: 100%;
+            height: 38px;
+            background-color: #4a63cb;
             position: relative;
+            box-sizing: border-box;
         }
 
-        /* طبقة تكرار الزخرفة أفقياً بشكل لا نهائي */
-        .pattern-repeater {
-            display: flex;
-            gap: 1px;
+        /* توليد تفاصيل الزخرفة الزهرية المتكررة أفقياً */
+        .footer-pattern-inner {
             width: 100%;
-            justify-content: space-around;
+            height: 100%;
+            /* رسم متجهي SVG يحاكي الانحناءات البيضاء ونقاط الارتكاز والخطوط المزدوجة التناظرية */
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://w3.org" width="60" height="38" viewBox="0 0 60 38"><line x1="0" y1="3" x2="60" y2="3" stroke="white" stroke-width="1" opacity="0.9"/><line x1="0" y1="6" x2="60" y2="6" stroke="white" stroke-width="1.5" opacity="0.9"/><line x1="0" y1="32" x2="60" y2="32" stroke="white" stroke-width="1.5" opacity="0.9"/><line x1="0" y1="35" x2="60" y2="35" stroke="white" stroke-width="1" opacity="0.9"/><path d="M30,9 C33,13 38,13 41,19 C38,25 33,25 30,29 C27,25 22,25 19,19 C22,13 27,13 30,9 Z" fill="none" stroke="white" stroke-width="1.2" opacity="0.95"/><path d="M30,12 C32,15 35,15 37,19 C35,23 32,23 30,26 C28,23 25,23 23,19 C25,15 28,15 30,12 Z" fill="rgba(255,255,255,0.2)" stroke="white" stroke-width="0.8" opacity="0.9"/><circle cx="30" cy="19" r="1.5" fill="white"/><path d="M12,19 L19,19 M41,19 L48,19" stroke="white" stroke-width="1" opacity="0.8"/><circle cx="12" cy="19" r="1" fill="white"/><circle cx="48" cy="19" r="1" fill="white"/></svg>');
+            background-repeat: repeat-x;
+            background-position: center;
         }
 
         .footer-bottom-bar {
-            background-color: #4359be;
-            padding: 8px 15px;
+            background-color: #4a63cb;
+            padding: 10px 15px;
             display: flex;
             align-items: center;
         }
@@ -207,24 +205,10 @@
     </div>
 </div>
 
-<!-- الشريط السفلي مع الزخرفة الهندسية المرسومة داخله مباشرة -->
+<!-- الشريط السفلي المستوحى بالكامل من الزخرفة الأصلية المرفقة -->
 <div class="footer-container">
     <div class="footer-pattern-bar">
-        <div class="pattern-repeater">
-            <!-- وحدة زخرفية متكررة هندسياً مأخوذة من صورتك الأصلية -->
-            <script>
-                // تكرار الزخرفة تلقائياً لملء أي شاشة (موبايل أو كمبيوتر) بدقة عالية
-                for (let i = 0; i < 40; i++) {
-                    document.write(`
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://w3.org" style="opacity: 0.95;">
-                            <path d="M12 2L20 12L12 22L4 12L12 2Z" stroke="white" stroke-width="1.2"/>
-                            <path d="M12 6L16.5 12L12 18L7.5 12L12 6Z" fill="rgba(255,255,255,0.25)" stroke="white" stroke-width="0.8"/>
-                            <circle cx="12" cy="12" r="1.2" fill="white"/>
-                        </svg>
-                    `);
-                }
-            </script>
-        </div>
+        <div class="footer-pattern-inner"></div>
     </div>
     <div class="footer-bottom-bar">
         <button class="footer-menu-btn" onclick="goBack()">☰</button>
