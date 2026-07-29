@@ -3,161 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>نظام الاستعلام عن التأشيرة الإلكترونية - سلطنة عمان</title>
+    <title>نظام الاستعلام عن التأشيرة الإلكترونية</title>
     <style>
-        /* CSS لتغيير الألوان والتصميم */
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            background-color: #f4f7f6; 
+            font-family: Tahoma, Arial, sans-serif; 
+            background-color: #f2f4f7; 
             margin: 0; 
             padding: 20px; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
             height: 100vh; 
-            direction: rtl; 
         }
         .card { 
             background: white; 
-            padding: 30px; 
+            padding: 25px; 
             border-radius: 8px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1); 
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15); 
             width: 100%; 
-            max-width: 450px; 
+            max-width: 420px; 
             text-align: center; 
-            border-top: 5px solid #004a99; /* اللون الأزرق الرسمي */
-        }
-        .logo {
-            width: 80px; /* حجم شعار الخنجر */
-            margin-bottom: 15px;
+            border-top: 4px solid #003366; 
         }
         h2 { 
-            color: #004a99; 
-            margin-bottom: 10px; 
-            font-size: 22px;
-            font-weight: bold;
+            color: #003366; 
+            margin: 15px 0; 
+            font-size: 20px; 
         }
-        p.subtitle {
-            color: #333;
-            font-size: 15px;
-            margin-bottom: 25px;
+        .sub-title {
+            color: #666;
+            font-size: 13px;
+            margin-bottom: 20px;
         }
         input { 
             width: 100%; 
-            padding: 15px; 
+            padding: 12px; 
             margin: 10px 0; 
-            border: 1px solid #ddd; 
+            border: 1px solid #ccc; 
             border-radius: 4px; 
             box-sizing: border-box; 
-            text-align: center; 
-            font-size: 16px; 
-            background-color: #fbfbfb;
+            text-align: right; 
+            font-size: 15px; 
         }
-        input:focus {
-            outline: none;
-            border-color: #004a99;
-        }
-        button.check-btn { 
-            background-color: #004a99; /* اللون الأزرق الرسمي */
+        button.btn { 
+            background-color: #003366; 
             color: white; 
             border: none; 
-            padding: 15px; 
+            padding: 12px; 
             width: 100%; 
             border-radius: 4px; 
-            font-size: 16px; 
+            font-size: 15px; 
             cursor: pointer; 
             font-weight: bold; 
-            margin-top: 15px;
-            transition: background-color 0.3s;
+            margin-top: 10px; 
         }
-        button.check-btn:hover { 
-            background-color: #003580; /* درجة أغمق عند التحويم */
-        }
-        .error { 
-            color: #d9534f; 
-            margin-top: 15px; 
-            font-weight: bold; 
-            font-size: 14px;
-        }
-        .success-box { 
+        button.btn:hover { background-color: #002244; }
+        .error { color: #d9534f; margin-top: 12px; font-weight: bold; font-size: 13px; }
+        
+        /* تنسيق جدول النتائج ليطابق الشكل الرسمي */
+        .result-table { 
+            width: 100%; 
             text-align: right; 
-            background-color: #f9f9f9;
-            padding: 15px;
-            border-radius: 4px;
-            border: 1px solid #eee;
+            border-collapse: collapse; 
+            margin-top: 10px; 
         }
-        .success-box p { 
-            margin: 10px 0; 
-            font-size: 14px; 
-            color: #333;
-            border-bottom: 1px dashed #e0e0e0;
-            padding-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
+        .result-table tr { 
+            border-bottom: 1px solid #eee; 
         }
-        .success-box p strong {
-            color: #555;
-            width: 120px; /* تحديد عرض التسميات */
-            display: inline-block;
+        .result-table th { 
+            color: #555; 
+            font-size: 13px; 
+            padding: 10px 5px; 
+            width: 35%; 
+            font-weight: bold;
+        }
+        .result-table td { 
+            color: #222; 
+            font-size: 13px; 
+            padding: 10px 5px; 
+            width: 65%; 
         }
         .badge { 
-            background: #e6f7ff; 
-            color: #004a99; 
-            padding: 4px 8px; 
-            border-radius: 4px; 
+            background: #e1f5fe; 
+            color: #0288d1; 
+            padding: 3px 8px; 
+            border-radius: 3px; 
             font-weight: bold; 
-            font-size: 13px;
-            border: 1px solid #bae7ff;
+            font-size: 12px;
+            display: inline-block;
         }
-        button.close-btn {
-            background-color: #6c757d; 
-            color: white; 
-            border: none; 
-            padding: 12px 30px; 
-            border-radius: 4px; 
-            font-size: 14px; 
-            cursor: pointer; 
-            margin-top: 20px;
-        }
-        button.close-btn:hover { background-color: #5a6268; }
     </style>
 </head>
 <body>
 
-<!-- شاشة تسجيل الدخول (البحث) -->
+<!-- شاشة البحث -->
 <div class="card" id="loginCard">
-    <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="شعار شرطة عمان السلطانية" class="logo">
-    <h2>شرطة عمان السلطانية</h2>
-    <p class="subtitle">نظام الاستعلام عن حالة التأشيرة الإلكترونية</p>
-    <input type="text" id="passportInput" placeholder="أدخل رقم جواز السفر" aria-label="رقم جواز السفر">
-    <button class="check-btn" onclick="checkVisa()">استعلام</button>
+    <h2>الاستعلام عن التأشيرة الإلكترونية</h2>
+    <div class="sub-title">شرطة عمان السلطانية</div>
+    <input type="text" id="passportInput" placeholder="أدخل رقم جواز السفر">
+    <button class="btn" onclick="checkVisa()">بحث</button>
     <div id="errorMessage" class="error"></div>
-    <p style="font-size: 12px; color: #999; margin-top: 30px;">© الإدارة العامة للجوازات والإقامة</p>
 </div>
 
-<!-- شاشة عرض البيانات (بعد النجاح) -->
+<!-- شاشة عرض النتائج -->
 <div class="card" id="resultCard" style="display: none;">
-    <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="شعار شرطة عمان السلطانية" class="logo">
-    <h2 style="font-size: 20px;">بيانات التأشيرة الرسمية</h2>
-    <div class="success-box" id="visaDetails"></div>
-    <button class="close-btn" onclick="logout()">رجوع</button>
+    <h2>بيانات التأشيرة الرسمية</h2>
+    <table class="result-table">
+        <tr>
+            <th>حالة التأشيرة:</th>
+            <td><span class="badge" id="res_status"></span></td>
+        </tr>
+        <tr>
+            <th>اسم العميل:</th>
+            <td id="res_name"></td>
+        </tr>
+        <tr>
+            <th>رقم التأشيرة:</th>
+            <td id="res_visaNo"></td>
+        </tr>
+        <tr>
+            <th>الدولة:</th>
+            <td id="res_country"></td>
+        </tr>
+        <tr>
+            <th>رقم الجواز:</th>
+            <td id="res_passport"></td>
+        </tr>
+        <tr>
+            <th>الجنسية:</th>
+            <td id="res_nat"></td>
+        </tr>
+        <tr>
+            <th>تاريخ الانتهاء:</th>
+            <td id="res_expiry"></td>
+        </tr>
+    </table>
+    <button class="btn" onclick="logout()" style="background-color: #6c757d; margin-top: 20px;">رجوع</button>
 </div>
 
 <script>
-    // قاعدة بيانات العملاء
-    // أضف، عدّل، أو احذف الأشخاص هنا
+    // قاعدة بيانات العملاء (أضف وعدل براحتك هنا)
     const database = [
         {
             passport: "N0152762726",
-            name: "ماهر مرجان", // تم تغيير الاسم للعربية
-            visaNo: "١٩٨٢٧٦٢٥",   // أرقام عربية
+            name: "ماهر مرجان",
+            visaNo: "١٩٨٢٧٦٢٥",
             country: "الكويت",
-            nat: "سوري",         // الجنسية عربية
-            expiry: "٢٥-٠٩-٢٠٢٦", // التاريخ عربي
+            nat: "سوري",
+            expiry: "٢٥-٠٩-٢٠٢٦",
             status: "سارية المفعول"
         }
-        // مثال لإضافة شخص ثاني:
-        // ,{ passport: "P1234567", name: "أحمد علي", ... }
+        // أضف أشخاص آخرين هنا بنفس الطريقة...
     ];
 
     function checkVisa() {
@@ -169,25 +165,21 @@
             return;
         }
 
-        // البحث في القاعدة
         const client = database.find(c => c.passport.toUpperCase() === inputVal);
 
         if(client) {
-            // نجاح
             document.getElementById("loginCard").style.display = "none";
             document.getElementById("resultCard").style.display = "block";
             
-            document.getElementById("visaDetails").innerHTML = `
-                <p><strong>حالة التأشيرة:</strong> <span class="badge">${client.status}</span></p>
-                <p><strong>اسم العميل:</strong> <span>${client.name}</span></p>
-                <p><strong>رقم التأشيرة:</strong> <span>${client.visaNo}</span></p>
-                <p><strong>الجنسية:</strong> <span>${client.nat}</span></p>
-                <p><strong>رقم الجواز:</strong> <span>${client.passport}</span></p>
-                <p><strong>تاريخ الانتهاء:</strong> <span>${client.expiry}</span></p>
-            `;
+            document.getElementById("res_status").innerText = client.status;
+            document.getElementById("res_name").innerText = client.name;
+            document.getElementById("res_visaNo").innerText = client.visaNo;
+            document.getElementById("res_country").innerText = client.country;
+            document.getElementById("res_passport").innerText = client.passport;
+            document.getElementById("res_nat").innerText = client.nat;
+            document.getElementById("res_expiry").innerText = client.expiry;
         } else {
-            // فشل
-            errorDiv.innerText = "عذراً، لم يتم العثور على بيانات للتأشيرة برقم الجواز المدخل.";
+            errorDiv.innerText = "عذراً، رقم الجواز غير مدخل أو غير صحيح.";
         }
     }
 
