@@ -13,7 +13,7 @@
             direction: ltr;
             min-height: 100vh;
             position: relative;
-            padding-bottom: 75px; /* مساحة للشريط السفلي وزر القائمة */
+            padding-bottom: 85px;
             box-sizing: border-box;
         }
         .top-header {
@@ -127,24 +127,26 @@
             color: #111;
         }
         
-        /* الشريط السفلي المطابق تماماً لصورتك (اللون الأزرق الغامق والزخرفة البيضاء وزر القائمة) */
+        /* الشريط السفلي والزخرفة المطابقة تماماً لآخر صورة أرسلتها */
         .footer-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #3b5998;
-            border-top: 1px solid #dcdcdc;
+            background-color: #5c7cfa;
         }
         .footer-pattern {
-            height: 22px;
-            background-color: #3b5998;
-            /* زخرفة متعرجة قريبة جداً للتصميم الأصلي */
-            background-image: linear-gradient(135deg, #ffffff 25%, transparent 25%), linear-gradient(225deg, #ffffff 25%, transparent 25%);
-            background-size: 12px 12px;
-            border-bottom: 2px solid #2d4373;
+            height: 24px;
+            background-color: #5c7cfa;
+            /* نقشة زخرفية قريبة جداً للشكل المطلوب */
+            background-image: radial-gradient(ellipse at center, #ffffff 40%, transparent 41%);
+            background-size: 14px 24px;
+            background-repeat: repeat-x;
+            border-top: 1px solid #dcdcdc;
+            border-bottom: 1px solid #4c6ef5;
         }
         .footer-bottom-bar {
+            background-color: #5c7cfa;
             padding: 10px 15px;
             display: flex;
             align-items: center;
@@ -152,10 +154,10 @@
         .footer-menu-btn {
             background-color: transparent;
             color: white;
-            border: 1px solid rgba(255, 255, 255, 0.6);
+            border: 1px solid #ffffff;
             padding: 6px 10px;
             border-radius: 4px;
-            font-size: 20px;
+            font-size: 18px;
             cursor: pointer;
             line-height: 1;
         }
@@ -163,7 +165,6 @@
 </head>
 <body>
 
-<!-- الهيدر العلوي -->
 <div class="top-header">
     <div class="logo-container">
         <img src="https://www.rop.gov.om/arabic/images/logo_ar.png" alt="Royal Oman Police" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Emblem_of_Oman.svg/120px-Emblem_of_Oman.svg.png'">
@@ -214,21 +215,18 @@
 
         <div class="data-label" style="margin-top: 15px;">Travel Document Expiry Date</div>
         <div class="data-value" id="val_expiry"></div>
-
-        <button class="action-btn" onclick="goBack()" style="background-color: #6c757d; margin-top: 25px;">Back</button>
     </div>
 </div>
 
-<!-- الشريط السفلي المطور حسب صورتك بالضبط -->
+<!-- الشريط السفلي وزر القائمة -->
 <div class="footer-container">
     <div class="footer-pattern"></div>
     <div class="footer-bottom-bar">
-        <button class="footer-menu-btn">☰</button>
+        <button class="footer-menu-btn" onclick="goBack()">☰</button>
     </div>
 </div>
 
 <script>
-    // قاعدة البيانات تضم الفيزتين بدقة تامة
     const visaDatabase = [
         {
             passport: "N0152762726",
