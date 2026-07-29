@@ -13,22 +13,23 @@
             direction: ltr;
             min-height: 100vh;
             position: relative;
-            padding-bottom: 120px;
+            padding-bottom: 140px;
             box-sizing: border-box;
         }
         
-        /* ترويسة تعتمد على الصورة الأصلية 100% */
+        /* ترويسة متطابقة مع أبعاد ومظهر شعار شرطة عمان السلطانية */
         .top-header-img {
             width: 100%;
             background-color: #ffffff;
-            border-bottom: 1px solid #dcdcdc;
-            overflow: hidden;
+            border-bottom: 1px solid #e1e8ed;
+            padding: 10px 0;
             display: flex;
-            justify-content: flex-start;
+            justify-content: center;
+            align-items: center;
         }
         .top-header-img img {
             width: 100%;
-            max-width: 100%;
+            max-width: 900px; /* الحجم المثالي لظهور الشعار بوضوح دون تمدد */
             height: auto;
             display: block;
         }
@@ -37,13 +38,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 25px 15px;
+            padding: 30px 15px;
         }
         .visa-card {
             background: #ffffff;
             padding: 35px 25px;
             border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
             width: 100%;
             max-width: 440px;
             text-align: center;
@@ -113,29 +114,30 @@
             color: #111;
         }
         
-        /* تذييل الصفحة الكامل */
+        /* تذييل الصفحة الكامل المحتوي على الزخرفة الأصلية المضمونة */
         .footer-container {
             position: absolute;
             bottom: 0;
             left: 0;
             width: 100%;
-            background-color: #3f51b5; 
+            background-color: #4a63cb; 
         }
         
-        /* شريط استدعاء صورة الزخرفة الأصلية وتكرارها */
+        /* شريط الزخرفة المستدعى من الصورة الرسمية لشرطة عمان */
         .footer-pattern-bar {
             width: 100%;
-            height: 42px;
-            /* استدعاء رابط الصورة الأصلية المقصوصة مباشرة لضمان عدم اختفائها */
-            background-image: url('https://ibb.co');
-            background-repeat: repeat-x; /* تكرار أوتوماتيكي مستمر */
+            height: 45px;
+            /* استدعاء رابط الزخرفة العمانية الدقيقة مكررة أفقياً */
+            background-image: url('https://r2.dev');
+            background-repeat: repeat-x;
             background-size: auto 100%;
             background-position: left center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .footer-bottom-bar {
-            background-color: #3f51b5;
-            padding: 12px 15px;
+            background-color: #4a63cb;
+            padding: 15px 20px;
             display: flex;
             align-items: center;
         }
@@ -153,9 +155,9 @@
 </head>
 <body>
 
-<!-- عرض صورة الترويسة الأصلية مباشرة -->
+<!-- عرض صورة الترويسة الجديدة (تأكد من تسمية ملف صورة الشعار باسم header.jpg) -->
 <div class="top-header-img">
-    <img src="header.jpg" alt="Oman e Visa Header">
+    <img src="header.jpg" alt="Royal Oman Police Header">
 </div>
 
 <div class="main-container">
@@ -197,7 +199,7 @@
     </div>
 </div>
 
-<!-- الشريط السفلي المستدعي للزخرفة الحقيقية المقصوصة أوتوماتيكياً -->
+<!-- الشريط السفلي المحتوي على الزخرفة الأصلية المتصلة بالسيرفر المباشر -->
 <div class="footer-container">
     <div class="footer-pattern-bar"></div>
     <div class="footer-bottom-bar">
