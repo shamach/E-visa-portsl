@@ -1,33 +1,34 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html class="ltr" dir="ltr" lang="en-US">
 <head>
     <meta charset="UTF-8">
     <title>Track Your Application - Evisa</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <link type="text/css" rel="stylesheet" href="https://evisa.rop.gov.om/Evisa-home-theme/css/jquery-ui-arabic.css">
+    <link type="text/css" rel="stylesheet" href="https://evisa.rop.gov.om/Evisa-home-theme/css/jquery-ui.css">
+    <script src="https://evisa.rop.gov.om/Evisa-home-theme/js/jquery.js" type="text/javascript"></script>
+    <script src="https://evisa.rop.gov.om/Evisa-home-theme/js/jquery-ui.js" type="text/javascript"></script>
+    <link class="lfr-css-file" href="https://evisa.rop.gov.om/Evisa-home-theme/css/main.css" rel="stylesheet" type="text/css" />
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: Tahoma, Arial, sans-serif; }
-        body { background-color: #f4f6f9; color: #333; }
-        
-        /* الهيدر العلوي */
-        .header { background: #fff; border-bottom: 1px solid #ddd; padding: 15px 0; }
-        .top_header { width: 90%; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
-        .logo_new { background: url('https://evisa.rop.gov.om/Evisa-home-theme/images/custom/ROP_logo.png') no-repeat center/contain; width: 200px; height: 50px; }
-        .logo_evisa { background: url('https://evisa.rop.gov.om/Evisa-home-theme/images/custom/e-visa-logo.png') no-repeat center/contain; width: 120px; height: 40px; }
+        .header { background: #fff; border-bottom: 1px solid #ddd; padding: 10px 0; }
+        .top_header { width: 90%; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo_new { background: url('https://evisa.rop.gov.om/Evisa-home-theme/images/custom/ROP_logo.png') no-repeat; width: 220px; height: 60px; background-size: contain; }
+        .logo_evisa { background: url('https://evisa.rop.gov.om/Evisa-home-theme/images/custom/e-visa-logo.png') no-repeat; width: 140px; height: 50px; background-size: contain; }
 
-        /* واجهة البحث */
         #search-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 80px 20px;
-            min-height: 70vh;
+            padding: 60px 20px;
+            background-color: #f4f6f9;
+            min-height: 60vh;
         }
         .main-search-card {
             background: #fff;
             width: 100%;
-            max-width: 550px;
-            border-radius: 8px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            border-radius: 6px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
             overflow: hidden;
             text-align: center;
         }
@@ -37,16 +38,24 @@
             color: #fff;
             border-bottom: 3px solid #c59b27;
         }
-        .header-banner h2 { font-size: 20px; margin-bottom: 5px; }
-        .header-banner span { font-size: 13px; color: #aaa; }
-        
+        .header-banner h2 {
+            margin: 0 0 5px 0;
+            font-size: 22px;
+            font-family: Tahoma, sans-serif;
+            font-weight: bold;
+        }
+        .header-banner span {
+            font-size: 13px;
+            color: #ccc;
+            letter-spacing: 0.5px;
+        }
         .search-body {
             background-color: #004080;
-            padding: 40px 30px;
+            padding: 40px 25px;
         }
         .search-body input {
-            width: 100%;
-            padding: 14px;
+            width: 85%;
+            padding: 14px 15px;
             margin-bottom: 20px;
             border: 1px solid #ccc;
             border-radius: 4px;
@@ -54,121 +63,101 @@
             text-align: center;
             outline: none;
         }
-        /* زر البحث باللون الأحمر كما طلبت */
+        /* زر البحث باللون الأحمر */
         .search-body button {
             background-color: #d9534f;
             color: #fff;
             border: none;
-            padding: 12px 40px;
+            padding: 12px 35px;
             font-size: 16px;
             font-weight: bold;
             border-radius: 4px;
             cursor: pointer;
             transition: background 0.2s;
         }
-        .search-body button:hover { background-color: #c9302c; }
+        .search-body button:hover {
+            background-color: #c9302c;
+        }
 
-        /* واجهة النتائج */
         #result-container {
             display: none;
-            padding: 40px 20px;
-            max-width: 600px;
-            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f6f9;
+            min-height: 80vh;
         }
         .back-btn {
             display: inline-block;
-            margin-bottom: 20px;
+            margin: 15px 0;
             color: #004080;
             text-decoration: none;
             font-size: 14px;
             font-weight: bold;
         }
-        .back-btn:hover { text-decoration: underline; }
-
-        .result-card {
-            background: #fff;
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        .back-btn:hover {
+            text-decoration: underline;
         }
-        .green-circle-container {
-            width: 70px;
-            height: 70px;
-            background-color: #28a745;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 0 auto 15px auto;
-        }
-        .green-circle-container svg { width: 35px; height: 35px; fill: #ffffff; }
-        .sub_ttl { font-size: 20px; color: #28a745; display: block; text-align: center; margin-bottom: 20px; }
-        
-        hr { border: 0; border-top: 1px solid #eee; margin: 20px 0; }
-        
-        .qr-content p { font-size: 14px; color: #666; margin-bottom: 4px; }
-        .qr-content p.fw-bold { font-size: 16px; color: #222; font-weight: bold; margin-bottom: 15px; }
     </style>
 </head>
-<body>
+<body class="yui3-skin-sam guest-site signed-out public-page site">
+<div id="wrapper">
+    <div class="container">
+        <header>
+            <div class="header">
+                <div class="top_header">
+                    <div class="one_half"><div class="logo_new"></div></div>
+                    <div class="second_half floatRight"><div class="logo_evisa"></div></div>
+                </div>
+            </div>
+        </header>
 
-<div class="header">
-    <div class="top_header">
-        <div class="logo_new"></div>
-        <div class="logo_evisa"></div>
-    </div>
-</div>
-
-<!-- الصفحة الأولى: الاستعلام -->
-<div id="search-container">
-    <div class="main-search-card">
-        <div class="header-banner">
-            <h2>نظام الاستعلام عن التأشيرات الإلكترونية</h2>
-            <span>E-Visa Verification Gateway</span>
+        <!-- الصفحة الأولى: الاستعلام -->
+        <div id="search-container">
+            <div class="main-search-card">
+                <div class="header-banner">
+                    <h2>نظام الاستعلام عن التأشيرات الإلكترونية</h2>
+                    <span>E-Visa Verification Gateway</span>
+                </div>
+                <div class="search-body">
+                    <input type="text" id="visaInput" placeholder="أدخل رقم التأشيرة أو رقم الجواز">
+                    <br>
+                    <button onclick="checkVisa()">بحث</button>
+                </div>
+            </div>
         </div>
-        <div class="search-body">
-            <input type="text" id="visaInput" placeholder="أدخل رقم التأشيرة أو رقم الجواز">
-            <br>
-            <button onclick="checkVisa()">بحث</button>
+
+        <!-- الصفحة الثانية: النتائج (مطابقة تماماً للشكل الرسمي الأصلي) -->
+        <div id="result-container">
+            <div id="content" style="max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+                <div style="text-align: left;">
+                    <a href="#" onclick="goBack()" class="back-btn">&larr; Back to Search</a>
+                </div>
+                <div class="newtemplate" id="main-content" role="main">
+                    <section class="section-qr">
+                        <div class="row">
+                            <div class="col-lg-12 text-center" style="text-align: center;">
+                                <div style="width: 60px; height: 60px; background-color: #5cb85c; border-radius: 50%; display: inline-flex; justify-content: center; align-items: center; margin-bottom: 10px;">
+                                    <svg viewBox="0 0 24 24" style="width: 30px; height: 30px; fill: #fff;"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                                </div>
+                                <div><b class="sub_ttl" id="visa-status-text" style="font-size: 20px; color: #5cb85c;">Visa is Active</b></div>
+                            </div>
+
+                            <br/><hr class="fr fullwidth" style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;"/><br clear="all">
+
+                            <div class="qr-content" style="font-family: Arial, sans-serif;">
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Visa Number</span><strong id="res-visaNumber" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Given Name</span><strong id="res-givenName" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Family Name</span><strong id="res-familyName" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Gender</span><strong id="res-gender" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Nationality</span><strong id="res-nationality" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Travel Document Number</span><strong id="res-docNumber" style="font-size: 16px; color: #333;">-</strong></div>
+                                <div style="margin-bottom: 15px;"><span style="color: #777; font-size: 13px; display: block;">Travel Document Expiry Date</span><strong id="res-docExpiry" style="font-size: 16px; color: #333;">-</strong></div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- الصفحة الثانية: النتائج -->
-<div id="result-container">
-    <a href="#" onclick="goBack()" class="back-btn">&larr; العودة للبحث عن رقم آخر</a>
-    <div class="result-card">
-        <div class="green-circle-container">
-            <svg viewBox="0 0 24 24">
-                <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
-            </svg>
-        </div>
-        <b class="sub_ttl" id="visa-status-text">Visa is Active</b>
-        
-        <hr>
-
-        <div class="qr-content">
-            <p>Visa Number</p>
-            <p class="fw-bold" id="res-visaNumber">-</p>
-
-            <p>Given Name</p>
-            <p class="fw-bold" id="res-givenName">-</p>
-            
-            <p>Family Name</p>
-            <p class="fw-bold" id="res-familyName">-</p>
-               
-            <p>Gender</p>
-            <p class="fw-bold" id="res-gender">-</p>
-
-            <p>Nationality</p>
-            <p class="fw-bold" id="res-nationality">-</p>
-
-            <p>Travel Document Number</p>
-            <p class="fw-bold" id="res-docNumber">-</p>
-
-            <p>Travel Document Expiry Date</p>
-            <p class="fw-bold" id="res-docExpiry">-</p>
-        </div>
     </div>
 </div>
 
@@ -290,6 +279,5 @@
         document.getElementById('visaInput').value = '';
     }
 </script>
-
 </body>
 </html>
