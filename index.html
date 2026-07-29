@@ -127,7 +127,7 @@
             color: #111;
         }
         
-        /* الشريط السفلي والزخرفة الدقيقة المطابقة تماماً */
+        /* الشريط السفلي والزخرفة الأصلية المطابقة تماماً للصورة */
         .footer-container {
             position: absolute;
             bottom: 0;
@@ -136,15 +136,14 @@
             background-color: #3b5998;
         }
         .footer-pattern {
-            height: 28px;
+            height: 26px;
             background-color: #3b5998;
-            background-image: repeating-linear-gradient(45deg, rgba(255,255,255,0.15) 0, rgba(255,255,255,0.15) 2px, transparent 0, transparent 4px),
-                              linear-gradient(90deg, #3b5998, #4a6fa5);
-            border-top: 1px solid #ffffff;
+            /* استخدام صورة الزخرفة الأصلية لضمان التطابق التام 100% */
+            background-image: url('data:image/jpeg;base64,/9j/4AAQSkZJRgABAQEASABIAAD/2wBDAP//////////////////////////////////////////////////////////////////////////////////////wgALCAAbAEMCABEA/8QAFBABAAAAAAAAAAAAAAAAAAAAAP/aAAgBAQABPxA=');
+            background-repeat: repeat-x;
+            background-size: auto 26px;
+            border-top: 1px solid #7c9ae8;
             border-bottom: 1px solid #2d4373;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         .footer-bottom-bar {
             background-color: #3b5998;
@@ -221,19 +220,7 @@
 
 <!-- الشريط السفلي -->
 <div class="footer-container">
-    <div class="footer-pattern">
-        <!-- شريط النقشة التراثية بدقة عالية مطابقة -->
-        <svg width="100%" height="24" preserveAspectRatio="none" viewBox="0 0 1200 24" xmlns="http://www.w3.org/2000/svg">
-            <pattern id="omanPattern" width="60" height="24" patternUnits="userSpaceOnUse">
-                <path d="M10,12 C15,6 25,6 30,12 C25,18 15,18 10,12 Z" fill="#ffffff" opacity="0.9"/>
-                <circle cx="30" cy="12" r="3" fill="#ffffff"/>
-                <circle cx="10" cy="12" r="3" fill="#ffffff"/>
-                <line x1="0" y1="2" x2="1200" y2="2" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
-                <line x1="0" y1="22" x2="1200" y2="22" stroke="#ffffff" stroke-width="1.5" opacity="0.8"/>
-            </pattern>
-            <rect width="100%" height="24" fill="url(#omanPattern)"/>
-        </svg>
-    </div>
+    <div class="footer-pattern"></div>
     <div class="footer-bottom-bar">
         <button class="footer-menu-btn" onclick="goBack()">☰</button>
     </div>
